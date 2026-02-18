@@ -1,0 +1,14 @@
+# Assets Folder
+
+Place your background images and other assets here.
+
+## Supported formats
+- PNG
+- JPG/JPEG
+- GIF
+- BMP
+
+## Usage
+- Put background images in this folder
+- Reference them in your calendar configuration JSON
+- Images will be used for day/month backgrounds

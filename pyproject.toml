@@ -1,0 +1,10 @@
+[project]
+name = "calendar-maker"
+version = "0.1.0"
+description = "A tool for creating custom calendars with various layouts"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=10.0.0",
+    "pyside6>=6.10.2",
+]

@@ -1,0 +1,88 @@
+{
+  "name": "My Calendar 2026",
+  "year": 2026,
+  "calendar_type": "single_page",
+  "canvas": {
+    "width": 2480,
+    "height": 3508,
+    "dpi": 300,
+    "background_color": "#FFFFFF"
+  },
+  "layout": {
+    "single_page_columns": 3,
+    "single_page_rows": 4,
+    "single_page_margin_x": 40,
+    "single_page_margin_y": 40,
+    "single_page_spacing_x": 20,
+    "single_page_spacing_y": 20,
+    "multi_page_margin_x": 100,
+    "multi_page_margin_y": 100,
+    "multi_page_header_height": 200,
+    "notes_area_ratio": 0.35,
+    "notes_line_spacing": 60
+  },
+  "month_font_type": "Arial",
+  "month_font_size": 72,
+  "month_font_color": "000000",
+  "month_title_font_size": 90,
+  "month_title_font_color": "000000",
+  "month_background_color": "FFFFFF",
+  "month_border_color": "#000000",
+  "month_border_width": 0,
+  "day_width": 240,
+  "day_height": 240,
+  "day_font_size": 14,
+  "day_font_color": "000000",
+  "day_background_color": "FFFFFF",
+  "day_border_color": "CCCCCC",
+  "day_border_width": 1,
+  "day_border_style": "dashed",
+  "day_number_align": "left",
+  "day_number_position_x": 10,
+  "day_number_position_y": 10,
+  "weekday_header_height": 40,
+  "weekday_font_size": 24,
+  "weekday_font_color": "#000000",
+  "weekday_background_color": "F0F0F0",
+  "weekday_names": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun"
+  ],
+  "highlight_weekends": true,
+  "weekend_background_color": "FFF5F5",
+  "weekend_font_color": "FF0000",
+  "weekend_days": [
+    5,
+    6
+  ],
+  "add_default_holidays": true,
+  "holidays": [
+    {
+      "name": "день мужчин",
+      "month": 2,
+      "day": 23,
+      "color": "#FF0000",
+      "is_recurring": true
+    }
+  ],
+  "special_days": [
+    {
+      "name": "др Макса",
+      "description": "\t",
+      "month": 11,
+      "day": 7,
+      "color": "#aa00ff",
+      "is_recurring": true
+    }
+  ],
+  "assets_folder": "assets",
+  "notes_title": "Notes / Заметки",
+  "notes_background_color": "F8F8F8",
+  "notes_font_size": 32,
+  "notes_line_color": "#DDDDDD"
+}
