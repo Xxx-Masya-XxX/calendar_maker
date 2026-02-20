@@ -13,7 +13,7 @@
     "month": {
         "gap": 30,
         "text_color": [0, 0, 0],
-        "text_position": [40, 40],
+        "text_position": [100, 40],
         "text_size":98,
         "text_font":"C:/Windows/Fonts/mistral.ttf",
         "text_align":"center",
@@ -29,7 +29,7 @@
         "width": 200,
         "height": 200,
         "text_color": [0, 0, 0],
-        "text_position": [40, 40],
+        "text_position": [95, 105],
         "text_size":48,
         "text_align":"center",
         "padding": 20,
