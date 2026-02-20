@@ -3,7 +3,7 @@
 from pathlib import Path
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFileDialog, QHBoxLayout
 from PySide6.QtCore import Signal, Qt, QSize
-from PySide6.QtGui import QPixmap, QImage
+from PySide6.QtGui import QPixmap
 
 
 class ImagePreview(QWidget):

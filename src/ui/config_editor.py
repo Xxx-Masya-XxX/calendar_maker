@@ -1,11 +1,9 @@
 """Configuration editor widget with visual controls."""
 
 import copy
-from pathlib import Path
 
 from PySide6.QtWidgets import (
-    QWidget, QVBoxLayout, QFormLayout, QLineEdit,
-    QSpinBox, QPushButton, QFileDialog, QGroupBox, QHBoxLayout,
+    QWidget, QVBoxLayout, QFormLayout, QSpinBox, QGroupBox, QHBoxLayout,
     QComboBox, QLabel
 )
 from PySide6.QtCore import Signal

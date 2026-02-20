@@ -1,7 +1,6 @@
 """Day rendering logic for calendar generation."""
 
 import numpy as np
-from pathlib import Path
 
 from src.utils.image_utils import ImageUtils
 from src.utils.font_manager import FontManager

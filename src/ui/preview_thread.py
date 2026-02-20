@@ -20,6 +20,8 @@ class PreviewThread(QThread):
         self.config = config
         self.year = year
         self.month = month
+        self.finished.connect(self.quit)
+        self.error.connect(self.quit)
 
     def run(self):
         try:

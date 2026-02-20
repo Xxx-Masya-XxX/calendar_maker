@@ -1,9 +1,7 @@
 """Month rendering logic for calendar generation."""
 
-import cv2
 import numpy as np
 from datetime import datetime
-from pathlib import Path
 
 from src.utils.image_utils import ImageUtils
 from src.utils.font_manager import FontManager

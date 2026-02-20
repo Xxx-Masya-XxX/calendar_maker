@@ -1,7 +1,7 @@
 """Color picker widget with visual preview."""
 
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QLabel, QColorDialog
-from PySide6.QtGui import QColor, QPixmap, QPainter, QCursor
+from PySide6.QtGui import QColor, QPixmap, QPainter
 from PySide6.QtCore import Signal, QSize, Qt
 
 

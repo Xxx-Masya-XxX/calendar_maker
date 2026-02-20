@@ -4,10 +4,8 @@ import json
 import cv2
 import numpy as np
 from pathlib import Path
-from datetime import datetime
 
 from src.utils.font_manager import FontManager
-from src.utils.image_utils import ImageUtils
 from src.month_renderer import MonthRenderer
 
 

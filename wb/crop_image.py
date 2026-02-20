@@ -9,7 +9,6 @@ from PySide6.QtCore import Qt, QPoint
 from PIL import Image
 
 
-from PySide6.QtGui import QPolygonF
 
 class ImageLabel(QLabel):
     def __init__(self):
