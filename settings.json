@@ -69,7 +69,7 @@
     "months":[
         {"name":"Январь",    "background":"assets/img/test_bg (2).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"center"},
         {"name":"February",   "background":"assets/img/test_bg (1).jpg",        "text_color": [255, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"bottom"},
-        {"name":"Март",      "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"top", "padding_top": 800},
+        {"name":"Март",      "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"top", "padding_right": 800},
         {"name":"Апрель",    "background":"assets/img/test_bg (2).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"right","height_pos":"center"},
         {"name":"Май",       "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"right","height_pos":"bottom"},
         {"name":"Июнь",      "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"right","height_pos":"top"},
