@@ -5,6 +5,9 @@ description = "A tool for creating custom calendars with various layouts"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "numpy>=2.4.2",
+    "opencv-contrib-python>=4.13.0.92",
+    "opencv-contrib-python-headless>=4.13.0.92",
     "pillow>=10.0.0",
     "pyside6>=6.10.2",
 ]

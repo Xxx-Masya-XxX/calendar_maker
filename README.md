@@ -1,31 +1,29 @@
 # Calendar Maker
 
-A Python application for creating custom calendars with various layouts and full JSON configuration support. Built with Pillow for rendering and PySide6 for the user interface.
+A Python application for creating custom calendars with various layouts and full JSON configuration support. Built with OpenCV, Pillow for rendering, and PySide6 for the user interface.
 
 ## Features
 
-### Three Calendar Types
-- **Single Page** - all 12 months on one page (2480x3508 px)
-- **Multi Page** - one month per page
-- **Multi Page with Notes** - one month per page with notes section
+### Calendar Generation
+- Full year calendar generation (12 months)
+- Per-month image output
+- Support for special days with custom backgrounds
+- Weekend highlighting
+- Cyrillic text support
 
 ### Full Customization via JSON
-- Canvas size and DPI settings
-- Layout configuration (columns, rows, margins, spacing)
-- Font settings (type, size, color)
-- Color settings for all elements
-- Day cell sizes and borders
-- Weekday header customization
-- Weekend highlighting
-- Holiday and special day management
-- Background images support
+- Day cell dimensions and styling
+- Font settings (type, size, color, alignment)
+- Color settings for weekdays, weekends, and special days
+- Background images for days and months
+- Special days management with custom backgrounds
 
 ### UI Features
-- Tabbed settings interface
-- Real-time preview
+- Tabbed configuration interface
+- Real-time preview generation
 - JSON import/export
-- Color pickers
-- Holiday/special day management
+- File browsers for fonts and backgrounds
+- Special days table editor
 
 ## Installation
 
@@ -46,75 +44,95 @@ pip install -r requirements.txt
 ### Graphical Interface
 
 ```bash
-uv run python main.py
+python run_ui.py
+# or
+uv run python run_ui.py
+```
+
+### Command Line Generation
+
+```bash
+python run_generator.py
+# or
+uv run python run_generator.py
 ```
 
 ### Programmatic Usage
 
 ```python
-from config import CalendarConfig
-from calendar_core import CalendarBuilder, CalendarFactory
+from src.calendar_generator import CalendarGenerator
 
-# Load config from JSON
-config = CalendarConfig.from_json("my_config.json")
+# Initialize with config file
+generator = CalendarGenerator('settings.json')
 
-# Or create config programmatically
-config = CalendarConfig()
-config.year = 2026
-config.calendar_type = "single_page"
-config.day_width = 350
-config.day_height = 450
+# Generate full year
+months = generator.create_year(2026)
 
-# Build calendar
-builder = CalendarBuilder(config)
-builder.build_all_months()
+# Save all months
+filenames = generator.save_year(months, 2026, 'output')
 
-# Create renderer
-renderer = CalendarFactory.create_renderer(config.calendar_type)
-renderer.set_config(config)
-renderer.set_months(builder.months)
-
-# Save calendar
-renderer.save("output.png")
+# Or generate single month
+month_img = generator.create_month(2026, 1)
+generator.save_month(month_img, 2026, 1, 'output')
 ```
 
 ### JSON Configuration
 
-Each calendar configuration is saved as a JSON file. One JSON file generates one calendar.
-
 ```json
 {
-  "name": "My Calendar 2026",
-  "year": 2026,
-  "calendar_type": "single_page",
-  "canvas": {
-    "width": 2480,
-    "height": 3508,
-    "dpi": 300,
-    "background_color": "#FFFFFF"
+  "day_of_the_week": {
+    "width": 200,
+    "height": 50,
+    "text_color": [0, 0, 0],
+    "text_position": [40, 40],
+    "text_size": 48,
+    "text_align": "center",
+    "text_font": "C:/Windows/Fonts/arial.ttf",
+    "background": "assets/img/background.png"
   },
-  "layout": {
-    "single_page_columns": 3,
-    "single_page_rows": 4,
-    "single_page_margin_x": 40,
-    "single_page_margin_y": 40,
-    "single_page_spacing_x": 20,
-    "single_page_spacing_y": 20
+  "month": {
+    "gap": 10,
+    "text_color": [0, 0, 0],
+    "text_size": 48,
+    "text_font": "C:/Windows/Fonts/mistral.ttf",
+    "background": "assets/img/testx.jpg"
   },
-  "day_width": 300,
-  "day_height": 400,
-  "day_font_size": 14,
-  "day_font_color": "#000000",
-  "day_background_color": "#FFFFFF",
-  "day_border_color": "#CCCCCC",
-  "day_border_width": 1,
-  "day_border_style": "solid",
-  "highlight_weekends": true,
-  "weekend_background_color": "#FFF5F5",
-  "weekend_font_color": "#FF0000",
-  "add_default_holidays": true,
-  "holidays": [],
-  "special_days": []
+  "regular_day": {
+    "width": 200,
+    "height": 200,
+    "text_color": [0, 0, 0],
+    "text_position": [40, 40],
+    "text_size": 48,
+    "text_align": "center",
+    "text_font": "C:/Windows/Fonts/arial.ttf",
+    "background": "assets/img/background.png"
+  },
+  "spec_day": {
+    "width": 200,
+    "height": 200,
+    "text_color": [255, 0, 255],
+    "text_position": [40, 40],
+    "text_size": 48,
+    "text_align": "center",
+    "text_font": "C:/Windows/Fonts/arial.ttf",
+    "background": "assets/img/test.jpg"
+  },
+  "weekend": {
+    "width": 200,
+    "height": 200,
+    "text_color": [255, 0, 0],
+    "text_position": [40, 40],
+    "text_size": 48,
+    "text_align": "center",
+    "text_font": "C:/Windows/Fonts/arial.ttf",
+    "background": "assets/img/background.png"
+  },
+  "spec_days": [
+    {"date": "07.12", "name": "Birthday", "background": "assets/img/spec_day1.png"},
+    {"date": "08.03", "name": "Women's Day", "background": "assets/img/spec_day.png"},
+    {"date": "23.02", "name": "Defender of the Fatherland Day"},
+    {"date": "14.02", "name": "Valentine's Day"}
+  ]
 }
 ```
 
@@ -122,88 +140,75 @@ Each calendar configuration is saved as a JSON file. One JSON file generates one
 
 ```
 calendar_maker/
-├── main.py                 # Application entry point
-├── config/                 # Configuration module
+├── run_generator.py        # CLI entry point
+├── run_ui.py               # GUI entry point
+├── settings.json           # Configuration file
+├── calendar_generator.py   # Legacy entry point (compatibility)
+├── ui.py                   # Legacy entry point (compatibility)
+├── src/                    # Main source directory
 │   ├── __init__.py
-│   ├── calendar_config.py  # JSON config model
-│   └── sample_config.json  # Sample configuration
-├── models/                 # Data models
-│   ├── __init__.py
-│   ├── day.py             # Day model with position/size
-│   ├── week.py            # Week model
-│   ├── month.py           # Month model
-│   ├── holiday.py         # Holiday model
-│   ├── special_day.py     # Special day model
-│   └── weekday.py         # Weekday header model
-├── renderers/             # Calendar renderers
-│   ├── __init__.py
-│   ├── base_renderer.py   # Base renderer class
-│   ├── single_page_renderer.py
-│   ├── multi_page_renderer.py
-│   └── multi_page_notes_renderer.py
-├── calendar_core/         # Calendar building logic
-│   ├── __init__.py
-│   ├── calendar_factory.py
-│   └── calendar_builder.py
-├── ui/                    # PySide6 UI components
-│   ├── __init__.py
-│   ├── main_window.py     # Main window
-│   ├── calendar_widget.py # Preview widget
-│   ├── settings_tabs.py   # Settings tabs
-│   └── settings_dialog.py # Dialogs
-├── assets/                # Background images folder
-├── test_calendar.py       # Test script
+│   ├── calendar_generator.py   # Main generator class
+│   ├── day_renderer.py         # Day rendering logic
+│   ├── month_renderer.py       # Month rendering logic
+│   ├── ui/                     # UI components
+│   │   ├── __init__.py
+│   │   ├── main_window.py      # Main application window
+│   │   ├── config_editor.py    # Configuration editor widget
+│   │   ├── spec_days_editor.py # Special days editor
+│   │   └── preview_thread.py   # Preview generation thread
+│   └── utils/                  # Utility modules
+│       ├── __init__.py
+│       ├── font_manager.py     # Font loading and caching
+│       ├── image_utils.py      # Image manipulation utilities
+│       └── date_utils.py       # Date/calendar utilities
+├── assets/                 # Background images
+│   └── img/
+├── output/                 # Generated calendars
 └── requirements.txt
 ```
 
-## Model Properties
+## Module Overview
 
-### Day Model
-```python
-@dataclass
-class Day:
-    # Position and size
-    position: Position      # x, y coordinates
-    size: Size             # width, height
-    
-    # Font settings
-    font: Font             # font_type, font_size, font_color, align
-    
-    # Background settings
-    background: Background # background_color, background_image, opacity
-    
-    # Border settings
-    border: Border         # border_color, border_width, border_style, border_image
-    
-    # Holiday settings
-    is_holiday: bool
-    holiday_name: str
-    holiday_font: Font
-    holiday_background: Background
-```
+### Core (`src/`)
+- **CalendarGenerator**: Main class for calendar generation
+- **MonthRenderer**: Handles month layout and rendering
+- **DayRenderer**: Handles individual day rendering
 
-### Configuration Options
+### Utils (`src/utils/`)
+- **FontManager**: Font loading, caching, and fallback handling
+- **ImageUtils**: Image operations (overlay, text drawing, format conversion)
+- **DateUtils**: Date calculations and Russian locale helpers
 
-| Category | Options |
-|----------|---------|
-| Canvas | width, height, dpi, background_color |
-| Layout | columns, rows, margins, spacing, header_height |
-| Day | width, height, font_size, font_color, background_color, border_* |
-| Weekday | header_height, font_size, background_color |
-| Weekend | highlight, background_color, font_color |
-| Notes | area_ratio, line_spacing, title, background_color |
+### UI (`src/ui/`)
+- **CalendarMakerUI**: Main application window
+- **ConfigEditor**: Widget for editing configuration sections
+- **SpecDaysEditor**: Table editor for special days
+- **PreviewThread**: Background thread for preview generation
+
+## Configuration Options
+
+| Section | Options |
+|---------|---------|
+| day_of_the_week | width, height, text_color, text_position, text_size, text_align, text_font, background |
+| month | gap, text_color, text_size, text_font, text_align, background |
+| regular_day | width, height, text_color, text_position, text_size, text_align, text_font, background |
+| spec_day | width, height, text_color, text_position, text_size, text_align, text_font, background |
+| weekend | width, height, text_color, text_position, text_size, text_align, text_font, background |
+| spec_days | date (DD.MM), name, desc, background |
 
 ## Output Format
 
 - **Format:** PNG
-- **Resolution:** Configurable (default 2480x3508 px, A4 at 300 DPI)
-- **Color mode:** RGB
+- **Color mode:** BGRA (with alpha channel support)
+- **Default resolution:** Configurable per day/month
 
 ## Requirements
 
 - Python >= 3.12
 - Pillow >= 10.0.0
-- PySide6 >= 6.6.0
+- PySide6 >= 6.10.2
+- OpenCV (opencv-contrib-python) >= 4.13.0
+- NumPy >= 2.4.2
 
 ## License
 
