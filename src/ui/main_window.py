@@ -32,7 +32,7 @@ class CalendarMakerUI(QMainWindow):
 
     def setup_ui(self):
         self.setWindowTitle("Calendar Maker - Configuration Editor")
-        self.setMinimumSize(1400, 900)
+        # self.setMinimumSize(1400, 900)
 
         # Central widget
         central = QWidget()
@@ -92,7 +92,7 @@ class CalendarMakerUI(QMainWindow):
         # Preview area
         self.preview_label = QLabel()
         self.preview_label.setAlignment(Qt.AlignCenter)
-        self.preview_label.setMinimumSize(400, 400)
+        # self.preview_label.setMinimumSize(400, 400)
         self.preview_label.setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc;")
         self.preview_label.setText("Click 'Update Preview' to generate")
 

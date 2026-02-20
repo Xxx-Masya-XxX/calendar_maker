@@ -30,8 +30,15 @@ class CalendarGenerator:
         )
         self.font_manager = FontManager(default_font)
 
+        # Get month-specific configurations
+        self.months_config = self.config.get('months', [])
+
         # Initialize month renderer
-        self.month_renderer = MonthRenderer(self.font_manager, self.spec_days)
+        self.month_renderer = MonthRenderer(
+            self.font_manager, 
+            self.spec_days, 
+            self.months_config
+        )
 
     def _load_config(self, config_path: str) -> dict:
         """Load configuration from JSON file."""

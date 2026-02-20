@@ -11,14 +11,17 @@
     },
 
     "month": {
-        "gap": 10,
+        "gap": 30,
         "text_color": [0, 0, 0],
         "text_position": [40, 40],
         "text_size":98,
         "text_font":"C:/Windows/Fonts/mistral.ttf",
         "text_align":"center",
         "month_text_height": 200,
-        "padding": 20,
+        "padding_top": 80,
+        "padding_right": 80,
+        "padding_bottom": 80,
+        "padding_left": 80,
         "background":"assets/img/test_bg (1).jpg"
 
     },
@@ -62,5 +65,19 @@
         {"date":"14.02", "desc":"","name":"День святого Валентина","text_color": [255, 0, 0]}
 
 
+    ],
+    "months":[
+        {"name":"Январь",    "background":"assets/img/test_bg (2).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"center"},
+        {"name":"February",   "background":"assets/img/test_bg (1).jpg",        "text_color": [255, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"bottom"},
+        {"name":"Март",      "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"top", "padding_top": 800},
+        {"name":"Апрель",    "background":"assets/img/test_bg (2).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"right","height_pos":"center"},
+        {"name":"Май",       "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"right","height_pos":"bottom"},
+        {"name":"Июнь",      "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"right","height_pos":"top"},
+        {"name":"Июль",      "background":"assets/img/test_bg (2).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"left","height_pos":"center"},
+        {"name":"Август",    "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"left","height_pos":"bottom"},
+        {"name":"Сентябрь",  "background":"assets/img/test.jpg",               "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/mistral.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"left","height_pos":"top"},
+        {"name":"Октябрь",   "background":"assets/img/test_bg (2).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/arial.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"top"},
+        {"name":"Ноябрь",    "background":"assets/img/test_bg (1).jpg",        "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/arial.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"top"},
+        {"name":"Декабрь",   "text_color": [0, 0, 0],        "text_font":"C:/Windows/Fonts/arial.ttf", "min_width": 2000, "min_height": 3000,"width_pos":"center","height_pos":"top"}
     ]
 }
