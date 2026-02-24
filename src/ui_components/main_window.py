@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
     QLabel, QPushButton, QTabWidget, QScrollArea, QFileDialog, QMessageBox,
 )
 
-from .tabs import DaySectionTab, SpecDaysTab, MonthsTab
+from .tabs import DaySectionTab, SpecDaysTab, MonthsTab, DaysTab
 from .preview import get_day_preview, get_month_preview
 from ..calendar_generator import main 
 
@@ -210,7 +210,8 @@ class MainWindow(QMainWindow):
     def __init__(self, config: dict):
         super().__init__()
         self._config = config
-        self._day_tabs: dict[str, DaySectionTab] = {}
+        self._day_tab: DaysTab | None = None
+        self._day_of_week_tab: DaySectionTab | None = None
         self._spec_days_tab: SpecDaysTab | None = None
         self._months_tab: MonthsTab | None = None
         self.setWindowTitle("Редактор конфигурации календаря")
@@ -246,27 +247,22 @@ class MainWindow(QMainWindow):
         self._tabs = QTabWidget()
         self._tabs.setTabPosition(QTabWidget.North)
 
-        sections = [
-            ("day_of_the_week", "📆 День недели"),
-            ("regular_day",     "🗓 Обычный день"),
-            ("weekend",         "🌅 Выходной"),
-            ("spec_day",        "⭐ Особый день"),
-            ("month",           "📖 Месяц (шаблон)"),
-        ]
+        # day_of_the_week tab (отдельно, не входит в общую вкладку)
+        if "day_of_the_week" in self._config:
+            self._day_of_week_tab = DaySectionTab(
+                self._config["day_of_the_week"],
+                show_preview_fn=get_day_preview,
+            )
+            self._day_of_week_tab.changed.connect(self._on_changed)
+            scroll = QScrollArea()
+            scroll.setWidgetResizable(True)
+            scroll.setWidget(self._day_of_week_tab)
+            self._tabs.addTab(scroll, "📆 День недели")
 
-        self._day_tabs = {}
-        for key, label in sections:
-            if key in self._config:
-                tab = DaySectionTab(
-                    self._config[key],
-                    show_preview_fn=get_day_preview if key != "month" else get_month_preview,
-                )
-                tab.changed.connect(self._on_changed)
-                scroll = QScrollArea()
-                scroll.setWidgetResizable(True)
-                scroll.setWidget(tab)
-                self._tabs.addTab(scroll, label)
-                self._day_tabs[key] = tab
+        # Unified days tab (regular_day, weekend, spec_day)
+        self._day_tab = DaysTab(self._config)
+        self._day_tab.changed.connect(self._on_changed)
+        self._tabs.addTab(self._day_tab, "📅 Дни")
 
         # spec_days tab
         self._spec_days_tab = SpecDaysTab(self._config.get("spec_days", []))
@@ -290,8 +286,10 @@ class MainWindow(QMainWindow):
 
     def _collect_config(self) -> dict:
         cfg = copy.deepcopy(self._config)
-        for key, tab in self._day_tabs.items():
-            cfg[key] = tab.get_data()
+        if self._day_of_week_tab:
+            cfg["day_of_the_week"] = self._day_of_week_tab.get_data()
+        if self._day_tab:
+            cfg.update(self._day_tab.get_data())
         if self._spec_days_tab:
             cfg["spec_days"] = self._spec_days_tab.get_data()
         if self._months_tab:

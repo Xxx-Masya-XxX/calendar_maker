@@ -38,8 +38,8 @@
         "background": "assets/img/test_bg (1).jpg"
     },
     "regular_day": {
-        "width": 200,
-        "height": 200,
+        "width": 100,
+        "height": 100,
         "text_color": [
             0,
             0,
@@ -49,15 +49,15 @@
             40,
             40
         ],
-        "text_size": 46,
-        "text_align": "left",
+        "text_size": 50,
+        "text_align": "center",
         "padding": 20,
-        "text_font": "C:/Windows/Fonts/georgia.ttf",
+        "text_font": "C:/Windows/Fonts/arial.ttf",
         "background": "assets/img/day_background.png"
     },
     "spec_day": {
-        "width": 200,
-        "height": 200,
+        "width": 100,
+        "height": 100,
         "text_color": [
             255,
             0,
@@ -74,8 +74,8 @@
         "background": "assets/img/test.jpg"
     },
     "weekend": {
-        "width": 200,
-        "height": 200,
+        "width": 100,
+        "height": 100,
         "text_color": [
             255,
             0,
@@ -85,10 +85,10 @@
             40,
             40
         ],
-        "text_size": 50,
+        "text_size": 48,
         "padding": 20,
         "text_align": "center",
-        "text_font": "C:/Windows/Fonts/georgia.ttf",
+        "text_font": "C:/Windows/Fonts/arial.ttf",
         "background": "assets/img/day_weekend_background.png"
     },
     "spec_days": [
@@ -139,6 +139,7 @@
     "months": [
         {
             "name": "Январь",
+            "background": "assets/img/test_bg (2).jpg",
             "text_color": [
                 0,
                 0,
@@ -148,11 +149,11 @@
             "min_width": 2000,
             "min_height": 3000,
             "width_pos": "center",
-            "height_pos": "center",
-            "background": "E:/NEW_PROJECTS/calendar_maker/assets/img/qweeee.jpg"
+            "height_pos": "center"
         },
         {
             "name": "February",
+            "background": "assets/img/test_bg (1).jpg",
             "text_color": [
                 255,
                 0,
@@ -162,8 +163,7 @@
             "min_width": 2000,
             "min_height": 3000,
             "width_pos": "center",
-            "height_pos": "bottom",
-            "background": "assets/img/test_bg (1).jpg"
+            "height_pos": "bottom"
         },
         {
             "name": "Март",
