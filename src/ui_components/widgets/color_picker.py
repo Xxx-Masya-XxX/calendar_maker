@@ -3,7 +3,7 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QColorDialog
 
-from ui_components.helpers import color_from_list, list_from_color, color_swatch
+from ..helpers import color_from_list, list_from_color, color_swatch
 
 
 class ColorPickerWidget(QWidget):

@@ -7,8 +7,8 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QPixmap
 
-from ui_components.constants import ALIGN_OPTIONS
-from ui_components.widgets import (
+from ..constants import ALIGN_OPTIONS
+from ..widgets import (
     ColorPickerWidget,
     ImagePickerWidget,
     FontPickerWidget,

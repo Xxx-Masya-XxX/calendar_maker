@@ -15,7 +15,7 @@ from pathlib import Path
 
 from PySide6.QtWidgets import QApplication
 
-from ui_components import MainWindow, STYLESHEET, DEFAULT_CONFIG
+from src.ui_components import MainWindow, STYLESHEET, DEFAULT_CONFIG
 
 
 def main():

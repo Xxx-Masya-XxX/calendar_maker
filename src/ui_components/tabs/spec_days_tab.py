@@ -9,8 +9,8 @@ from PySide6.QtWidgets import (
     QMessageBox,
 )
 
-from ui_components.helpers import color_from_list
-from ui_components.widgets import ColorPickerWidget, ImagePickerWidget
+from ..helpers import color_from_list
+from ..widgets import ColorPickerWidget, ImagePickerWidget
 
 
 class SpecDayItemDialog(QDialog):

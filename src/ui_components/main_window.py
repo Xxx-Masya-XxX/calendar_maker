@@ -10,9 +10,9 @@ from PySide6.QtWidgets import (
     QLabel, QPushButton, QTabWidget, QScrollArea, QFileDialog, QMessageBox,
 )
 
-from ui_components.tabs import DaySectionTab, SpecDaysTab, MonthsTab
-from ui_components.preview import get_day_preview, get_month_preview
-from src.calendar_generator import main
+from .tabs import DaySectionTab, SpecDaysTab, MonthsTab
+from .preview import get_day_preview, get_month_preview
+from ..calendar_generator import main 
 
 # ---------------------------------------------------------------------------
 # Stylesheet

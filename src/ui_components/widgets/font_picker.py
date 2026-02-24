@@ -3,7 +3,7 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QComboBox, QPushButton, QFileDialog
 
-from ui_components.constants import FONT_PRESETS
+from ..constants import FONT_PRESETS
 
 
 class FontPickerWidget(QWidget):

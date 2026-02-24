@@ -1,7 +1,7 @@
 """UI components for Calendar Config Editor."""
 
 # Constants
-from ui_components.constants import (
+from .constants import (
     DAYS_OF_WEEK,
     FONT_PRESETS,
     ALIGN_OPTIONS,
@@ -10,14 +10,14 @@ from ui_components.constants import (
 )
 
 # Helpers
-from ui_components.helpers import (
+from .helpers import (
     color_from_list,
     list_from_color,
     color_swatch,
 )
 
 # Widgets
-from ui_components.widgets import (
+from .widgets import (
     ColorPickerWidget,
     ImagePickerWidget,
     FontPickerWidget,
@@ -25,20 +25,20 @@ from ui_components.widgets import (
 )
 
 # Tabs
-from ui_components.tabs import (
+from .tabs import (
     DaySectionTab,
     SpecDaysTab,
     MonthsTab,
 )
 
 # Preview
-from ui_components.preview import (
+from .preview import (
     get_day_preview,
     get_month_preview,
 )
 
 # Main window
-from ui_components.main_window import (
+from .main_window import (
     MainWindow,
     STYLESHEET,
     DEFAULT_CONFIG,

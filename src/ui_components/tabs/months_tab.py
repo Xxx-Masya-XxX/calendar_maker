@@ -9,15 +9,15 @@ from PySide6.QtWidgets import (
     QMessageBox, QSpinBox, QComboBox, QSplitter,
 )
 
-from ui_components.constants import FONT_PRESETS, WIDTH_POS_OPTIONS, HEIGHT_POS_OPTIONS
-from ui_components.helpers import color_from_list
-from ui_components.widgets import (
+from ..constants import FONT_PRESETS, WIDTH_POS_OPTIONS, HEIGHT_POS_OPTIONS
+from ..helpers import color_from_list
+from ..widgets import (
     ColorPickerWidget,
     ImagePickerWidget,
     FontPickerWidget,
     PreviewLabel,
 )
-from ui_components.preview import get_month_preview
+from ..preview import get_month_preview
 
 
 class MonthItemDialog(QDialog):
