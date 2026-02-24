@@ -20,6 +20,7 @@ class CalendarGenerator:
             config_path: Path to JSON configuration file
         """
         self.config = self._load_config(config_path)
+
         self.spec_days = self._parse_spec_days()
 
         # Initialize font manager
@@ -125,10 +126,11 @@ class CalendarGenerator:
         return filenames
 
 
-def main():
+def main(json=None):
     """Main function."""
     # Initialize generator
-    generator = CalendarGenerator('settings.json')
+
+    generator = CalendarGenerator(json if json else 'settings.json')
 
     # Year to generate
     year = 2026

@@ -1,0 +1,537 @@
+{
+    "day_of_the_week": {
+        "width": 200,
+        "height": 200,
+        "text_color": [
+            0,
+            0,
+            0
+        ],
+        "text_position": [
+            40,
+            40
+        ],
+        "text_size": 48,
+        "text_align": "center",
+        "text_font": "C:/Windows/Fonts/arial.ttf",
+        "background": "assets/img/day_background.png"
+    },
+    "month": {
+        "gap": 30,
+        "text_color": [
+            0,
+            0,
+            0
+        ],
+        "text_position": [
+            100,
+            40
+        ],
+        "text_size": 98,
+        "text_font": "C:/Windows/Fonts/mistral.ttf",
+        "text_align": "center",
+        "month_text_height": 200,
+        "padding_top": 80,
+        "padding_right": 80,
+        "padding_bottom": 80,
+        "padding_left": 80,
+        "background": "assets/img/test_bg (1).jpg"
+    },
+    "regular_day": {
+        "width": 200,
+        "height": 200,
+        "text_color": [
+            0,
+            0,
+            0
+        ],
+        "text_position": [
+            95,
+            105
+        ],
+        "text_size": 48,
+        "text_align": "center",
+        "padding": 20,
+        "text_font": "C:/Windows/Fonts/arial.ttf",
+        "background": "assets/img/day_background.png"
+    },
+    "spec_day": {
+        "width": 200,
+        "height": 200,
+        "text_color": [
+            255,
+            0,
+            255
+        ],
+        "text_position": [
+            40,
+            40
+        ],
+        "text_size": 48,
+        "text_align": "center",
+        "padding": 20,
+        "text_font": "C:/Windows/Fonts/arial.ttf",
+        "background": "assets/img/test.jpg"
+    },
+    "weekend": {
+        "width": 200,
+        "height": 200,
+        "text_color": [
+            255,
+            0,
+            0
+        ],
+        "text_position": [
+            40,
+            40
+        ],
+        "text_size": 48,
+        "padding": 20,
+        "text_align": "center",
+        "text_font": "C:/Windows/Fonts/arial.ttf",
+        "background": "assets/img/day_weekend_background.png"
+    },
+    "spec_days": [
+        {
+            "date": "07.12",
+            "desc": "",
+            "name": "День рождения Макс",
+            "background": "assets/img/spec_day1.png",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.01",
+            "desc": "Новогодние каникулы",
+            "name": "Новый год",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "07.01",
+            "desc": "Православный праздник",
+            "name": "Рождество Христово",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "13.01",
+            "desc": "Традиционный праздник",
+            "name": "Старый Новый год",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "25.01",
+            "desc": "Праздник студентов",
+            "name": "День российского студенчества",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "27.01",
+            "desc": "Памятная дата",
+            "name": "День снятия блокады Ленинграда",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "02.02",
+            "desc": "Памятная дата",
+            "name": "День разгрома немецко-фашистских войск в Сталинградской битве",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "14.02",
+            "desc": "Неофициальный праздник",
+            "name": "День святого Валентина",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "23.02",
+            "desc": "Государственный праздник",
+            "name": "День защитника Отечества",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "08.03",
+            "desc": "Государственный праздник",
+            "name": "Международный женский день",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "18.03",
+            "desc": "Памятная дата",
+            "name": "День воссоединения Крыма с Россией",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "12.04",
+            "desc": "Памятная дата",
+            "name": "День космонавтики",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.05",
+            "desc": "Государственный праздник",
+            "name": "Праздник Весны и Труда",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "09.05",
+            "desc": "Государственный праздник",
+            "name": "День Победы",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "27.05",
+            "desc": "Профессиональный праздник",
+            "name": "Общероссийский день библиотек",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.06",
+            "desc": "Международный праздник",
+            "name": "День защиты детей",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "12.06",
+            "desc": "Государственный праздник",
+            "name": "День России",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "22.06",
+            "desc": "Памятная дата",
+            "name": "День памяти и скорби",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "08.07",
+            "desc": "Семейный праздник",
+            "name": "День семьи, любви и верности",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "28.07",
+            "desc": "Памятная дата",
+            "name": "День Крещения Руси",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "22.08",
+            "desc": "Государственный праздник",
+            "name": "День Государственного флага Российской Федерации",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.09",
+            "desc": "Праздник образования",
+            "name": "День знаний",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "03.09",
+            "desc": "Памятная дата",
+            "name": "День солидарности в борьбе с терроризмом",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "05.10",
+            "desc": "Профессиональный праздник",
+            "name": "День учителя",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "04.11",
+            "desc": "Государственный праздник",
+            "name": "День народного единства",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "07.11",
+            "desc": "Памятная дата",
+            "name": "День Октябрьской революции 1917 года",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "12.12",
+            "desc": "Памятная дата",
+            "name": "День Конституции Российской Федерации",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        }
+    ],
+    "months": [
+        {
+            "name": "Январь",
+            "background": "assets/img/test_bg (2).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "center",
+            "height_pos": "center"
+        },
+        {
+            "name": "February",
+            "background": "assets/img/test_bg (1).jpg",
+            "text_color": [
+                255,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "center",
+            "height_pos": "bottom"
+        },
+        {
+            "name": "Март",
+            "background": "assets/img/test_bg (1).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "center",
+            "height_pos": "top",
+            "padding_right": 800
+        },
+        {
+            "name": "Апрель",
+            "background": "assets/img/test_bg (2).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "right",
+            "height_pos": "center"
+        },
+        {
+            "name": "Май",
+            "background": "assets/img/test_bg (1).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "right",
+            "height_pos": "bottom"
+        },
+        {
+            "name": "Июнь",
+            "background": "assets/img/test_bg (1).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "right",
+            "height_pos": "top"
+        },
+        {
+            "name": "Июль",
+            "background": "assets/img/test_bg (2).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "left",
+            "height_pos": "center"
+        },
+        {
+            "name": "Август",
+            "background": "assets/img/test_bg (1).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "left",
+            "height_pos": "bottom"
+        },
+        {
+            "name": "Сентябрь",
+            "background": "assets/img/test.jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/mistral.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "left",
+            "height_pos": "top"
+        },
+        {
+            "name": "Октябрь",
+            "background": "assets/img/test_bg (2).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/arial.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "center",
+            "height_pos": "top"
+        },
+        {
+            "name": "Ноябрь",
+            "background": "assets/img/test_bg (1).jpg",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/arial.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "center",
+            "height_pos": "top"
+        },
+        {
+            "name": "Декабрь",
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "text_font": "C:/Windows/Fonts/arial.ttf",
+            "min_width": 2000,
+            "min_height": 3000,
+            "width_pos": "center",
+            "height_pos": "top"
+        }
+    ]
+}

@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLabel,
     QSpinBox, QSplitter, QPushButton, QComboBox, QLineEdit,
 )
+from PySide6.QtGui import QPixmap
 
 from ui_components.constants import ALIGN_OPTIONS
 from ui_components.widgets import (
@@ -63,6 +64,29 @@ class DaySectionTab(QWidget):
             w = ImagePickerWidget(self._data.get(key, ""))
             w.pathChanged.connect(lambda v, k=key: self._on_change(k, v))
             form.addRow(label, w)
+            # виджет с показом изображения
+            img_preview = QLabel(self,)
+            img_preview.setFixedSize(100, 100)
+            img_preview.setStyleSheet("border: 1px solid #ccc;")
+            img_preview.setAlignment(Qt.AlignCenter)
+            form.addRow("Превью", img_preview)
+
+            def update_preview(path):
+                resize_preview(path)
+                # img_preview.setPixmap(QPixmap(path) if path else QPixmap())
+            # надо уменишить размер изображения, если оно слишком большое
+            def resize_preview(path):
+                pixmap = QPixmap(path)
+                if not pixmap.isNull():
+                    pixmap = pixmap.scaled(
+                        img_preview.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation
+                    )
+                    img_preview.setPixmap(pixmap)
+                else:
+                    img_preview.setPixmap(QPixmap())
+            w.pathChanged.connect(update_preview)
+            update_preview(self._data.get(key, ""))
+            
             self._widgets[key] = w
 
         def add_font(key, label):

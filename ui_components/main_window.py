@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (
 
 from ui_components.tabs import DaySectionTab, SpecDaysTab, MonthsTab
 from ui_components.preview import get_day_preview, get_month_preview
-
+from src.calendar_generator import main
 
 # ---------------------------------------------------------------------------
 # Stylesheet
@@ -233,10 +233,13 @@ class MainWindow(QMainWindow):
         header.addStretch()
         btn_load = QPushButton("📂 Открыть JSON")
         btn_save = QPushButton("💾 Сохранить JSON")
+        render_btn = QPushButton("💾 Сгенерировать календарь")
         btn_load.clicked.connect(self._load_json)
         btn_save.clicked.connect(self._save_json)
+        render_btn.clicked.connect(self._render_calendar)
         header.addWidget(btn_load)
         header.addWidget(btn_save)
+        header.addWidget(render_btn)
         root.addLayout(header)
 
         # --- tabs ---
@@ -294,7 +297,12 @@ class MainWindow(QMainWindow):
         if self._months_tab:
             cfg["months"] = self._months_tab.get_data()
         return cfg
-
+    def _render_calendar(self):
+        cfg = self._collect_config()
+        with open("temp_config.json", "w", encoding="utf-8") as f:
+            json.dump(cfg, f, ensure_ascii=False, indent=4)
+        main("temp_config.json")
+        self._status.setText("Календарь сгенерирован.")
     def _save_json(self):
         path, _ = QFileDialog.getSaveFileName(
             self, "Сохранить конфигурацию", "calendar_config.json",
