@@ -3,10 +3,12 @@
 import cv2
 import numpy as np
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
+from collections import defaultdict
 
 from src.day_renderer import DayRenderer
 from src.utils.font_manager import FontManager
+from PIL import Image, ImageDraw, ImageFont
 
 
 class SpecDayGenerator:
@@ -22,6 +24,14 @@ class SpecDayGenerator:
         text_size: int = 48,
         text_position: List[int] = None,
         text_align: str = "center",
+        line_spacing: int = 10,
+        # Name text settings (separate from day number)
+        name_text: str = "{name}",
+        name_font: str = None,
+        name_size: int = 24,
+        name_position: List[int] = None,
+        name_color: List[int] = None,
+        name_line_spacing: int = 5,
     ):
         """
         Initialize spec day generator.
@@ -30,11 +40,18 @@ class SpecDayGenerator:
             width: Image width in pixels
             height: Image height in pixels
             background: Path to background image
-            text_color: Text color as [R, G, B]
-            text_font: Path to font file
-            text_size: Font size
-            text_position: Text position as [x, y]
+            text_color: Text color as [R, G, B] (for day number)
+            text_font: Path to font file (for day number)
+            text_size: Font size (for day number)
+            text_position: Text position as [x, y] (for day number)
             text_align: Text alignment (left, center, right)
+            line_spacing: Spacing between lines when multiple names
+            name_text: Template for name text (e.g., "{name}", "ДР: {name}")
+            name_font: Path to font file for names
+            name_size: Font size for names
+            name_position: Text position as [x, y] for names
+            name_color: Text color as [R, G, B] for names
+            name_line_spacing: Spacing between name lines
         """
         self.width = width
         self.height = height
@@ -44,61 +61,191 @@ class SpecDayGenerator:
         self.text_size = text_size
         self.text_position = text_position or [40, 40]
         self.text_align = text_align
+        self.line_spacing = line_spacing
+        
+        # Name text settings
+        self.name_text = name_text
+        self.name_font = name_font or self.text_font
+        self.name_size = name_size
+        self.name_position = name_position or [40, 100]
+        self.name_color = name_color or self.text_color
+        self.name_line_spacing = name_line_spacing
 
         # Initialize font manager
         self.font_manager = FontManager(self.text_font)
+
+    @staticmethod
+    def group_by_date(spec_days: List[Dict]) -> Dict[str, List[Dict]]:
+        """
+        Group spec days entries by date.
+
+        Args:
+            spec_days: List of spec day dicts
+
+        Returns:
+            Dict mapping date -> list of entries for that date
+        """
+        grouped = defaultdict(list)
+        for item in spec_days:
+            date = item.get("date", "")
+            if date:
+                grouped[date].append(item)
+        return dict(grouped)
+
+    @staticmethod
+    def get_unique_dates(spec_days: List[Dict]) -> List[Tuple[str, List[str]]]:
+        """
+        Get unique dates with their names.
+
+        Args:
+            spec_days: List of spec day dicts
+
+        Returns:
+            List of (date, [names]) tuples
+        """
+        grouped = SpecDayGenerator.group_by_date(spec_days)
+        result = []
+        for date, entries in sorted(grouped.items()):
+            names = [e.get("name", "") for e in entries]
+            result.append((date, names))
+        return result
+
+    def _create_image_with_names(
+        self,
+        day: int,
+        month: int,
+        names: List[str],
+        background_override: Optional[str] = None
+    ) -> np.ndarray:
+        """
+        Create image with day number and names.
+
+        Args:
+            day: Day of month
+            month: Month number
+            names: List of names to display
+            background_override: Optional background override
+
+        Returns:
+            BGRA image array
+        """
+        # Load background
+        bg_path = background_override or self.background
+        if bg_path and Path(bg_path).exists():
+            bg_img = Image.open(bg_path)
+            bg_img = bg_img.convert("RGBA").resize((self.width, self.height))
+        else:
+            # Create transparent background
+            bg_img = Image.new("RGBA", (self.width, self.height), (0, 0, 0, 0))
+
+        # Create draw object
+        draw = ImageDraw.Draw(bg_img)
+
+        # Load fonts
+        try:
+            font = ImageFont.truetype(self.text_font, self.text_size)
+        except Exception:
+            font = ImageFont.load_default()
+        
+        try:
+            name_font = ImageFont.truetype(self.name_font, self.name_size)
+        except Exception:
+            name_font = font
+
+        # Convert colors (BGR to RGB)
+        rgb_color = tuple(self.text_color)
+        name_rgb_color = tuple(self.name_color)
+
+        # Draw day number
+        day_str = str(day)
+        bbox = draw.textbbox((0, 0), day_str, font=font)
+        text_w = bbox[2] - bbox[0]
+        text_h = bbox[3] - bbox[1]
+        
+        x, y = self.text_position
+        if self.text_align == "center":
+            text_x = (self.width - text_w) / 2
+        elif self.text_align == "right":
+            text_x = self.width - text_w - x
+        else:  # left
+            text_x = x
+        
+        # Draw day number with outline
+        for dx, dy in [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]:
+            draw.text((text_x + dx, y + dy), day_str, font=font, fill=(0, 0, 0))
+        draw.text((text_x, y), day_str, font=font, fill=rgb_color)
+
+        # Draw names
+        name_x, name_y = self.name_position
+        for i, name in enumerate(names):
+            # Apply template
+            formatted_name = self.name_text.replace("{name}", name)
+            
+            # Get text bounding box
+            bbox = draw.textbbox((0, 0), formatted_name, font=name_font)
+            text_w = bbox[2] - bbox[0]
+            text_h = bbox[3] - bbox[1]
+
+            # Calculate x position based on alignment
+            if self.text_align == "center":
+                text_x = (self.width - text_w) / 2
+            elif self.text_align == "right":
+                text_x = self.width - text_w - name_x
+            else:  # left
+                text_x = name_x
+
+            # Calculate y position (offset for each line)
+            line_offset = i * (text_h + self.name_line_spacing)
+            text_y = name_y + line_offset
+
+            # Draw text with outline
+            for dx, dy in [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]:
+                draw.text((text_x + dx, text_y + dy), formatted_name, font=name_font, fill=(0, 0, 0))
+            
+            # Draw main text
+            draw.text((text_x, text_y), formatted_name, font=name_font, fill=name_rgb_color)
+
+        # Convert to numpy array (BGRA for OpenCV)
+        img_array = np.array(bg_img)
+        if img_array.shape[2] == 4:
+            # Convert RGBA to BGRA
+            img_array = img_array[:, :, [2, 1, 0, 3]]
+        else:
+            # Convert RGB to BGR and add alpha
+            img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+            alpha = np.ones((img_array.shape[0], img_array.shape[1], 1), dtype=np.uint8) * 255
+            img_array = np.concatenate([img_array, alpha], axis=2)
+
+        return img_array
 
     def generate(
         self,
         day: int,
         month: int,
+        names: List[str],
         background_override: Optional[str] = None,
     ) -> np.ndarray:
         """
-        Generate image for a single spec day.
+        Generate image for a single spec day (with possible multiple names).
 
         Args:
             day: Day of month
             month: Month number (1-12)
+            names: List of names to display on the image
             background_override: Optional background override for this specific day
 
         Returns:
             BGRA image array
         """
-        # Use override background or default
-        bg = background_override or self.background
-
-        # Create config for renderer
-        config = {
-            'spec_day': {
-                'width': self.width,
-                'height': self.height,
-                'background': bg,
-                'text_color': self.text_color,
-                'text_font': self.text_font,
-                'text_size': self.text_size,
-                'text_position': self.text_position,
-                'text_align': self.text_align,
-            }
-        }
-
-        # Create spec_days dict for renderer (with background)
-        date_key = f"{day:02d}.{month:02d}"
-        spec_days_dict = {date_key: {'background': bg}} if bg else {}
-
-        # Create renderer
-        renderer = DayRenderer(self.font_manager, spec_days_dict)
-
-        # Generate image (weekday=0 for preview/generation)
-        day_img = renderer.create_day_image(day, month, 0, config)
-
-        return day_img
+        return self._create_image_with_names(day, month, names, background_override)
 
     def generate_batch(
         self,
         spec_days: List[Dict],
         output_dir: str,
-        filename_pattern: str = "spec_{date}_{name}.png"
+        selected_dates: Optional[List[str]] = None,
+        filename_pattern: str = "spec_{date}.png",
+        merge_same_date: bool = True
     ) -> List[str]:
         """
         Generate images for multiple spec days.
@@ -106,7 +253,9 @@ class SpecDayGenerator:
         Args:
             spec_days: List of spec day dicts with 'date', 'name', 'background' keys
             output_dir: Output directory path
-            filename_pattern: Filename pattern with {date}, {name}, {month} placeholders
+            selected_dates: Optional list of dates to generate (if None, generate all)
+            filename_pattern: Filename pattern with {date}, {month}, {day} placeholders
+            merge_same_date: If True, merge multiple names on same date into one image
 
         Returns:
             List of generated file paths
@@ -114,10 +263,20 @@ class SpecDayGenerator:
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
 
+        if merge_same_date:
+            # Group by date
+            grouped = self.group_by_date(spec_days)
+        else:
+            # Each entry is separate
+            grouped = {item.get("date", ""): [item] for item in spec_days if item.get("date")}
+
         generated_files = []
 
-        for item in spec_days:
-            date = item.get("date", "")
+        for date, entries in sorted(grouped.items()):
+            # Skip if not selected
+            if selected_dates and date not in selected_dates:
+                continue
+
             if not date:
                 continue
 
@@ -126,17 +285,23 @@ class SpecDayGenerator:
             day = int(parts[0])
             month = int(parts[1])
 
-            # Get background override from item
-            bg_override = item.get('background') or self.background
+            # Get names
+            if merge_same_date:
+                names = [e.get("name", "") for e in entries]
+            else:
+                names = [entries[0].get("name", "")]
+
+            # Get background override from first entry
+            bg_override = entries[0].get('background') if entries else None
+            if not bg_override:
+                bg_override = self.background
 
             # Generate image
-            day_img = self.generate(day, month, bg_override)
+            day_img = self.generate(day, month, names, bg_override)
 
             # Build filename
-            name = item.get("name", "").replace(" ", "_").replace("/", "_")
             filename = filename_pattern.format(
                 date=date,
-                name=name,
                 month=f"{month:02d}",
                 day=f"{day:02d}"
             )
@@ -152,6 +317,7 @@ class SpecDayGenerator:
         self,
         day: int,
         month: int,
+        names: List[str],
         background_override: Optional[str] = None
     ) -> bytes:
         """
@@ -160,11 +326,12 @@ class SpecDayGenerator:
         Args:
             day: Day of month
             month: Month number
+            names: List of names to display
             background_override: Optional background override
 
         Returns:
             PNG-encoded image bytes
         """
-        img = self.generate(day, month, background_override)
+        img = self.generate(day, month, names, background_override)
         _, buffer = cv2.imencode('.png', img)
         return buffer.tobytes()

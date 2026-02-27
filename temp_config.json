@@ -49,10 +49,10 @@
             40,
             40
         ],
-        "text_size": 46,
-        "text_align": "left",
+        "text_size": 48,
+        "text_align": "center",
         "padding": 20,
-        "text_font": "C:/Windows/Fonts/georgia.ttf",
+        "text_font": "C:/Windows/Fonts/arial.ttf",
         "background": "assets/img/day_background.png"
     },
     "spec_day": {
@@ -85,24 +85,13 @@
             40,
             40
         ],
-        "text_size": 50,
+        "text_size": 48,
         "padding": 20,
         "text_align": "center",
-        "text_font": "C:/Windows/Fonts/georgia.ttf",
+        "text_font": "C:/Windows/Fonts/arial.ttf",
         "background": "assets/img/day_weekend_background.png"
     },
     "spec_days": [
-        {
-            "date": "07.12",
-            "desc": "",
-            "name": "День рождения Макс",
-            "background": "assets/img/spec_day1.png",
-            "text_color": [
-                255,
-                0,
-                0
-            ]
-        },
         {
             "date": "08.03",
             "desc": "",
@@ -134,11 +123,472 @@
                 0,
                 0
             ]
+        },
+        {
+            "date": "16.01",
+            "name": "Настя Чанкина",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "16.01",
+            "name": "Рома Хомяков",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "19.01",
+            "name": "б.Фая Мацик",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "29.01",
+            "name": "Ренат Чанкин",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "29.01",
+            "name": "Андрей Земцов (старший)",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.02",
+            "name": "Саша Заморехин",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "15.02",
+            "name": "Руслан Литвинцев",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "22.02",
+            "name": "Антон Геласимов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "10.03",
+            "name": "Коля Тыщенко",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "11.03",
+            "name": "Глеб Петрученко",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "16.03",
+            "name": "Валентина Кокоурова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "04.04",
+            "name": "Данил Зернов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "06.04",
+            "name": "Матвей Тыщенко",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "14.04",
+            "name": "Алексей Литвинцев",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "15.04",
+            "name": "Наталья Мальцева",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "23.04",
+            "name": "Павел Мацик",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "21.05",
+            "name": "Лера Чанкина",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.06",
+            "name": "Тимур Чанкин",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "02.06",
+            "name": "Вероника Геласимова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "16.06",
+            "name": "Алексей Синюк",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "17.06",
+            "name": "б. Ира Ткачева",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "25.06",
+            "name": "Надежда Чанкина",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "06.07",
+            "name": "Вова Кокоуров",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "08.07",
+            "name": "Вика Мацик-Сокольникова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "19.07",
+            "name": "Маша Заморехина",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "25.07",
+            "name": "Егор Шеметов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "03.08",
+            "name": "Тимофей Чанкин",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "06.08",
+            "name": "Катя Кокоурова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "16.08",
+            "name": "Анатолий Зернов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "04.09",
+            "name": "София Зернова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "05.09",
+            "name": "Дарья Зернова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "09.09",
+            "name": "Алена Литвинцева",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "03.10",
+            "name": "Егорка Мацик",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "24.10",
+            "name": "Алексей Мацик",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "25.10",
+            "name": "Кирилл Зернов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "01.11",
+            "name": "Саша Тыщенко",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "07.11",
+            "name": "Дима Тыщенко",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "11.11",
+            "name": "Владимир Литвинцев",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "12.11",
+            "name": "Анюта Шеметова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "15.11",
+            "name": "Ибрагим Чанкин",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "19.11",
+            "name": "Константин Зернов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "07.12",
+            "name": "Максим Шеметов",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "13.12",
+            "name": "Андрей Заморехин",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "13.12",
+            "name": "Андрей Земцов (Младший)",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "18.12",
+            "name": "Екатерина Зернова",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "date": "24.12",
+            "name": "Антонида Петрученко",
+            "desc": "День рождения",
+            "text_color": [
+                255,
+                0,
+                0
+            ]
         }
     ],
     "months": [
         {
             "name": "Январь",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -148,11 +598,11 @@
             "min_width": 2000,
             "min_height": 3000,
             "width_pos": "center",
-            "height_pos": "center",
-            "background": "E:/NEW_PROJECTS/calendar_maker/assets/img/qweeee.jpg"
+            "height_pos": "center"
         },
         {
             "name": "February",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 255,
                 0,
@@ -162,12 +612,11 @@
             "min_width": 2000,
             "min_height": 3000,
             "width_pos": "center",
-            "height_pos": "bottom",
-            "background": "assets/img/test_bg (1).jpg"
+            "height_pos": "bottom"
         },
         {
             "name": "Март",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -182,7 +631,7 @@
         },
         {
             "name": "Апрель",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -196,7 +645,7 @@
         },
         {
             "name": "Май",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -210,7 +659,7 @@
         },
         {
             "name": "Июнь",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -224,7 +673,7 @@
         },
         {
             "name": "Июль",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -238,7 +687,7 @@
         },
         {
             "name": "Август",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -252,7 +701,7 @@
         },
         {
             "name": "Сентябрь",
-            "background": "assets/img/test.jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -266,7 +715,7 @@
         },
         {
             "name": "Октябрь",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -280,7 +729,7 @@
         },
         {
             "name": "Ноябрь",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -294,6 +743,7 @@
         },
         {
             "name": "Декабрь",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,

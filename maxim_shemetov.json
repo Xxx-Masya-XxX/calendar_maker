@@ -93,17 +93,6 @@
     },
     "spec_days": [
         {
-            "date": "07.12",
-            "desc": "",
-            "name": "День рождения Макс",
-            "background": "assets/img/spec_day1.png",
-            "text_color": [
-                255,
-                0,
-                0
-            ]
-        },
-        {
             "date": "08.03",
             "desc": "",
             "name": "Международный женский день",
@@ -599,7 +588,7 @@
     "months": [
         {
             "name": "Январь",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -613,7 +602,7 @@
         },
         {
             "name": "February",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 255,
                 0,
@@ -627,7 +616,7 @@
         },
         {
             "name": "Март",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -642,7 +631,7 @@
         },
         {
             "name": "Апрель",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -656,7 +645,7 @@
         },
         {
             "name": "Май",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -670,7 +659,7 @@
         },
         {
             "name": "Июнь",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -684,7 +673,7 @@
         },
         {
             "name": "Июль",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -698,7 +687,7 @@
         },
         {
             "name": "Август",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -712,7 +701,7 @@
         },
         {
             "name": "Сентябрь",
-            "background": "assets/img/test.jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -726,7 +715,7 @@
         },
         {
             "name": "Октябрь",
-            "background": "assets/img/test_bg (2).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -740,7 +729,7 @@
         },
         {
             "name": "Ноябрь",
-            "background": "assets/img/test_bg (1).jpg",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
@@ -754,6 +743,7 @@
         },
         {
             "name": "Декабрь",
+            "background": "assets/img/transparent.png",
             "text_color": [
                 0,
                 0,
