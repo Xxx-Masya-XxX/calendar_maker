@@ -14,7 +14,7 @@
         "text_size": 48,
         "text_align": "center",
         "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/day_background.png"
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/winter.jpg"
     },
     "month": {
         "gap": 30,
@@ -38,8 +38,8 @@
         "background": "assets/img/test_bg (1).jpg"
     },
     "regular_day": {
-        "width": 200,
-        "height": 200,
+        "width": 607,
+        "height": 740,
         "text_color": [
             0,
             0,
@@ -52,30 +52,30 @@
         "text_size": 48,
         "text_align": "center",
         "padding": 20,
-        "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/day_background.png"
+        "text_font": "C:/Windows/Fonts/times.ttf",
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/palaroid_bg_regular.png"
     },
     "spec_day": {
-        "width": 200,
-        "height": 200,
+        "width": 607,
+        "height": 740,
         "text_color": [
-            255,
             0,
-            255
+            255,
+            38
         ],
         "text_position": [
-            40,
-            40
+            58,
+            110
         ],
-        "text_size": 48,
-        "text_align": "center",
+        "text_size": 80,
+        "text_align": "left",
         "padding": 20,
-        "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/test.jpg"
+        "text_font": "C:/Windows/Fonts/times.ttf",
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/palaroid_bg.png"
     },
     "weekend": {
-        "width": 200,
-        "height": 200,
+        "width": 607,
+        "height": 740,
         "text_color": [
             255,
             0,
@@ -88,8 +88,8 @@
         "text_size": 48,
         "padding": 20,
         "text_align": "center",
-        "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/day_weekend_background.png"
+        "text_font": "C:/Windows/Fonts/times.ttf",
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/palaroid_bg_weekend.png"
     },
     "spec_days": [
         {
@@ -100,7 +100,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_16.01.png"
         },
         {
             "date": "16.01",
@@ -110,7 +111,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_16.01.png"
         },
         {
             "date": "19.01",
@@ -120,7 +122,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_19.01.png"
         },
         {
             "date": "29.01",
@@ -130,7 +133,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_29.01.png"
         },
         {
             "date": "29.01",
@@ -140,7 +144,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_29.01.png"
         },
         {
             "date": "01.02",
@@ -150,7 +155,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_01.02.png"
         },
         {
             "date": "15.02",
@@ -160,7 +166,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_15.02.png"
         },
         {
             "date": "22.02",
@@ -170,7 +177,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_22.02.png"
         },
         {
             "date": "10.03",
@@ -180,7 +188,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_10.03.png"
         },
         {
             "date": "11.03",
@@ -190,7 +199,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_11.03.png"
         },
         {
             "date": "16.03",
@@ -200,7 +210,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_16.03.png"
         },
         {
             "date": "04.04",
@@ -210,7 +221,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_04.04.png"
         },
         {
             "date": "06.04",
@@ -220,7 +232,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_06.04.png"
         },
         {
             "date": "14.04",
@@ -230,7 +243,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_14.04.png"
         },
         {
             "date": "15.04",
@@ -240,7 +254,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_15.04.png"
         },
         {
             "date": "23.04",
@@ -250,7 +265,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_23.04.png"
         },
         {
             "date": "21.05",
@@ -260,7 +276,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_21.05.png"
         },
         {
             "date": "01.06",
@@ -270,7 +287,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_01.06.png"
         },
         {
             "date": "02.06",
@@ -280,7 +298,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_02.06.png"
         },
         {
             "date": "16.06",
@@ -290,7 +309,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_16.06.png"
         },
         {
             "date": "17.06",
@@ -300,7 +320,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_17.06.png"
         },
         {
             "date": "25.06",
@@ -310,7 +331,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_25.06.png"
         },
         {
             "date": "06.07",
@@ -320,7 +342,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_06.07.png"
         },
         {
             "date": "08.07",
@@ -330,7 +353,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_08.07.png"
         },
         {
             "date": "19.07",
@@ -340,7 +364,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_19.07.png"
         },
         {
             "date": "25.07",
@@ -350,7 +375,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_25.07.png"
         },
         {
             "date": "03.08",
@@ -360,7 +386,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_03.08.png"
         },
         {
             "date": "06.08",
@@ -370,7 +397,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_06.08.png"
         },
         {
             "date": "16.08",
@@ -380,7 +408,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_16.08.png"
         },
         {
             "date": "04.09",
@@ -390,7 +419,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_04.09.png"
         },
         {
             "date": "05.09",
@@ -400,7 +430,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_05.09.png"
         },
         {
             "date": "09.09",
@@ -410,7 +441,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_09.09.png"
         },
         {
             "date": "03.10",
@@ -420,7 +452,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_03.10.png"
         },
         {
             "date": "24.10",
@@ -430,7 +463,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_24.10.png"
         },
         {
             "date": "25.10",
@@ -440,7 +474,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_25.10.png"
         },
         {
             "date": "01.11",
@@ -450,7 +485,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_01.11.png"
         },
         {
             "date": "07.11",
@@ -460,7 +496,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_07.11.png"
         },
         {
             "date": "11.11",
@@ -470,7 +507,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_11.11.png"
         },
         {
             "date": "12.11",
@@ -480,7 +518,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_12.11.png"
         },
         {
             "date": "15.11",
@@ -490,7 +529,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_15.11.png"
         },
         {
             "date": "19.11",
@@ -500,7 +540,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_19.11.png"
         },
         {
             "date": "07.12",
@@ -510,7 +551,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_07.12.png"
         },
         {
             "date": "13.12",
@@ -520,7 +562,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_13.12.png"
         },
         {
             "date": "13.12",
@@ -530,7 +573,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_13.12.png"
         },
         {
             "date": "18.12",
@@ -540,7 +584,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_18.12.png"
         },
         {
             "date": "24.12",
@@ -550,7 +595,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\shemetov\\spec_24.12.png"
         }
     ],
     "months": [

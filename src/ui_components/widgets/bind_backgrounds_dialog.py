@@ -112,15 +112,22 @@ class BindBackgroundsDialog(QDialog):
             QMessageBox.warning(self, "Ошибка", "Папка не существует")
             return
 
+        print(f"[BindDialog] Scanning folder: {folder}")
+        
         # Scan for files
         self._found_files = self._binder.scan_folder(folder)
+        print(f"[BindDialog] Found files: {self._found_files}")
 
         # Find matches with spec days
         self._bindings = {}
         for entry in self._spec_days_data:
             date = entry.get('date', '')
+            print(f"[BindDialog] Checking date: {date}")
             if date in self._found_files:
                 self._bindings[date] = self._found_files[date]
+                print(f"[BindDialog] Match found for {date}: {self._found_files[date]}")
+
+        print(f"[BindDialog] Total bindings: {len(self._bindings)}")
 
         # Update list
         self._bindings_list.clear()

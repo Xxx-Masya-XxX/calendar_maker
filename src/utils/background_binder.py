@@ -8,13 +8,6 @@ from typing import List, Dict, Tuple, Optional
 class BackgroundBinder:
     """Utility for binding generated background images to special days."""
 
-    # Patterns to match date in filename
-    DATE_PATTERNS = [
-        r'(\d{2}\.\d{2})',  # bg_16.01.png
-        r'(\d{2}-\d{2})',   # bg_16-01.png
-        r'(\d{4})(\d{2})(\d{2})',  # 20260116.png
-    ]
-
     def __init__(self, supported_extensions: List[str] = None):
         """
         Initialize binder.
@@ -38,22 +31,36 @@ class BackgroundBinder:
         """
         folder = Path(folder_path)
         if not folder.exists():
+            print(f"[BackgroundBinder] Folder not found: {folder_path}")
             return {}
 
+        print(f"[BackgroundBinder] Scanning folder: {folder_path}")
         date_to_file = {}
 
         for ext in self.supported_extensions:
-            for file_path in folder.glob(f'*{ext}'):
+            files = list(folder.glob(f'*{ext}'))
+            print(f"[BackgroundBinder] Found {len(files)} files with extension {ext}")
+            
+            for file_path in files:
                 date = self._extract_date_from_filename(file_path.name)
                 if date:
-                    # Normalize to DD.MM format
+                    print(f"[BackgroundBinder] {file_path.name} -> date: {date}")
                     date_to_file[date] = str(file_path)
+                else:
+                    print(f"[BackgroundBinder] {file_path.name} -> no date found")
 
+        print(f"[BackgroundBinder] Total dates found: {len(date_to_file)}")
         return date_to_file
 
     def _extract_date_from_filename(self, filename: str) -> Optional[str]:
         """
         Extract date from filename.
+
+        Supports formats:
+        - spec_16.01.png -> 16.01
+        - bg_16-01.png -> 16.01
+        - 20260116.png -> 16.01
+        - spec_16_01.png -> 16.01
 
         Args:
             filename: Name of file
@@ -63,22 +70,37 @@ class BackgroundBinder:
         """
         # Remove extension
         name = Path(filename).stem
+        print(f"[BackgroundBinder] Extracting date from: {name}")
 
-        for pattern in self.DATE_PATTERNS:
-            match = re.search(pattern, name)
-            if match:
-                groups = match.groups()
-                if len(groups) == 2:
-                    # DD.MM or DD-MM
-                    day, month = groups
-                    if '-' in pattern:
-                        return f"{day}.{month}"
-                    return f"{day}.{month}"
-                elif len(groups) == 3:
-                    # YYYYMMDD
-                    year, month, day = groups
-                    return f"{day}.{month}"
+        # Pattern 1: DD.MM (e.g., spec_16.01.png)
+        match = re.search(r'(\d{2})\.(\d{2})', name)
+        if match:
+            day, month = match.groups()
+            print(f"[BackgroundBinder] Matched DD.MM pattern: {day}.{month}")
+            return f"{day}.{month}"
 
+        # Pattern 2: DD-MM (e.g., bg_16-01.png)
+        match = re.search(r'(\d{2})-(\d{2})', name)
+        if match:
+            day, month = match.groups()
+            print(f"[BackgroundBinder] Matched DD-MM pattern: {day}.{month}")
+            return f"{day}.{month}"
+
+        # Pattern 3: DD_MM (e.g., spec_16_01.png)
+        match = re.search(r'(\d{2})_(\d{2})', name)
+        if match:
+            day, month = match.groups()
+            print(f"[BackgroundBinder] Matched DD_MM pattern: {day}.{month}")
+            return f"{day}.{month}"
+
+        # Pattern 4: YYYYMMDD (e.g., 20260116.png)
+        match = re.search(r'(\d{4})(\d{2})(\d{2})', name)
+        if match:
+            year, month, day = match.groups()
+            print(f"[BackgroundBinder] Matched YYYYMMDD pattern: {day}.{month}")
+            return f"{day}.{month}"
+
+        print(f"[BackgroundBinder] No pattern matched")
         return None
 
     def bind_to_spec_days(
