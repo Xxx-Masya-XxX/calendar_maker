@@ -25,6 +25,7 @@ class SpecDayGenerator:
         day_size: int = 48,
         day_position: List[int] = None,
         day_align: str = "center",
+        render_day_number: bool = True,
         # Name text settings
         name_text: str = "{name}",
         name_font: str = None,
@@ -46,6 +47,7 @@ class SpecDayGenerator:
             day_size: Font size for day number
             day_position: Text position as [x, y] for day number
             day_align: Text alignment for day number (left, center, right)
+            render_day_number: If True, render day number; if False, only names
             name_text: Template for name text (e.g., "{name}", "ДР: {name}")
             name_font: Path to font file for names
             name_size: Font size for names
@@ -64,6 +66,7 @@ class SpecDayGenerator:
         self.day_size = day_size
         self.day_position = day_position or [40, 40]
         self.day_align = day_align
+        self.render_day_number = render_day_number
         
         # Name text settings
         self.name_text = name_text
@@ -159,24 +162,25 @@ class SpecDayGenerator:
         rgb_color = tuple(self.day_color)
         name_rgb_color = tuple(self.name_color)
 
-        # Draw day number
-        day_str = str(day)
-        bbox = draw.textbbox((0, 0), day_str, font=font)
-        text_w = bbox[2] - bbox[0]
-        text_h = bbox[3] - bbox[1]
+        # Draw day number (if enabled)
+        if self.render_day_number:
+            day_str = str(day)
+            bbox = draw.textbbox((0, 0), day_str, font=font)
+            text_w = bbox[2] - bbox[0]
+            text_h = bbox[3] - bbox[1]
 
-        x, y = self.day_position
-        if self.day_align == "center":
-            text_x = (self.width - text_w) / 2
-        elif self.day_align == "right":
-            text_x = self.width - text_w - x
-        else:  # left
-            text_x = x
-        
-        # Draw day number with outline
-        for dx, dy in [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]:
-            draw.text((text_x + dx, y + dy), day_str, font=font, fill=(0, 0, 0))
-        draw.text((text_x, y), day_str, font=font, fill=rgb_color)
+            x, y = self.day_position
+            if self.day_align == "center":
+                text_x = (self.width - text_w) / 2
+            elif self.day_align == "right":
+                text_x = self.width - text_w - x
+            else:  # left
+                text_x = x
+            
+            # Draw day number with outline
+            for dx, dy in [(-1, -1), (-1, 1), (1, -1), (1, 1), (-1, 0), (1, 0), (0, -1), (0, 1)]:
+                draw.text((text_x + dx, y + dy), day_str, font=font, fill=(0, 0, 0))
+            draw.text((text_x, y), day_str, font=font, fill=rgb_color)
 
         # Draw names
         name_x, name_y = self.name_position

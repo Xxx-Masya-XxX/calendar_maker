@@ -146,6 +146,11 @@ class GenerateSpecDaysDialog(QDialog):
         day_group = QGroupBox("Настройки числа дня")
         day_layout = QFormLayout()
 
+        # Render day number checkbox
+        self._render_day_number = QCheckBox("Отображать число дня")
+        self._render_day_number.setChecked(True)
+        day_layout.addRow(self._render_day_number)
+
         # Day text color
         self._day_color_picker = ColorPickerWidget(self._default_color)
         day_layout.addRow("Цвет числа:", self._day_color_picker)
@@ -188,6 +193,7 @@ class GenerateSpecDaysDialog(QDialog):
         self._day_pos_x.valueChanged.connect(self._update_preview)
         self._day_pos_y.valueChanged.connect(self._update_preview)
         self._day_text_align.currentTextChanged.connect(self._update_preview)
+        self._render_day_number.stateChanged.connect(self._update_preview)
 
         # Name text settings group
         name_group = QGroupBox("Настройки текста имён")
@@ -293,6 +299,17 @@ class GenerateSpecDaysDialog(QDialog):
         btns.button(QDialogButtonBox.Save).setText("💾 Сгенерировать выбранные")
         btns.accepted.connect(self._on_accept)
         btns.rejected.connect(self.reject)
+        
+        # Filename pattern input
+        filename_layout = QHBoxLayout()
+        filename_label = QLabel("Шаблон имени файла:")
+        self._filename_pattern = QLineEdit("spec_{date}.png")
+        self._filename_pattern.setPlaceholderText("spec_{date}.png")
+        filename_layout.addWidget(filename_label)
+        filename_layout.addWidget(self._filename_pattern)
+        filename_layout.addStretch()
+        
+        lay.addLayout(filename_layout)
         lay.addWidget(btns)
 
         # Populate date list
@@ -367,6 +384,7 @@ class GenerateSpecDaysDialog(QDialog):
             'height': self._img_height.value(),
             'background': self._bg_picker.value(),
             # Day number settings
+            'render_day_number': self._render_day_number.isChecked(),
             'day_color': self._day_color_picker.value(),
             'day_font': self._day_font_picker.value(),
             'day_size': self._day_font_size.value(),
@@ -425,6 +443,7 @@ class GenerateSpecDaysDialog(QDialog):
                 width=settings['width'],
                 height=settings['height'],
                 background=settings['background'],
+                render_day_number=settings['render_day_number'],
                 day_color=settings['day_color'],
                 day_font=settings['day_font'],
                 day_size=settings['day_size'],
@@ -483,6 +502,7 @@ class GenerateSpecDaysDialog(QDialog):
             width=settings['width'],
             height=settings['height'],
             background=settings['background'],
+            render_day_number=settings['render_day_number'],
             day_color=settings['day_color'],
             day_font=settings['day_font'],
             day_size=settings['day_size'],
@@ -501,7 +521,8 @@ class GenerateSpecDaysDialog(QDialog):
         generated_files = generator.generate_batch(
             self._spec_days_data,
             output_dir,
-            selected_dates=selected_dates
+            selected_dates=selected_dates,
+            filename_pattern=self._filename_pattern.text() or "spec_{date}.png"
         )
 
         QMessageBox.information(

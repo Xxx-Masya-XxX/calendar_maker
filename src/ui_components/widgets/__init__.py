@@ -7,6 +7,7 @@ from .image_picker import ImagePickerWidget
 from .font_picker import FontPickerWidget
 from .preview_label import PreviewLabel
 from .generate_spec_days_dialog import GenerateSpecDaysDialog
+from .bind_backgrounds_dialog import BindBackgroundsDialog
 
 __all__ = [
     "ColorPickerWidget",
@@ -14,5 +15,6 @@ __all__ = [
     "FontPickerWidget",
     "PreviewLabel",
     "GenerateSpecDaysDialog",
+    "BindBackgroundsDialog",
     "QSizePolicy",
 ]

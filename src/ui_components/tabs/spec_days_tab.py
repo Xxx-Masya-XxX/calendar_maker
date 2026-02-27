@@ -10,7 +10,10 @@ from PySide6.QtWidgets import (
 )
 
 from ..helpers import color_from_list
-from ..widgets import ColorPickerWidget, ImagePickerWidget, FontPickerWidget, GenerateSpecDaysDialog
+from ..widgets import (
+    ColorPickerWidget, ImagePickerWidget, FontPickerWidget,
+    GenerateSpecDaysDialog, BindBackgroundsDialog
+)
 
 from src.utils.text_parser import parse_spec_days_text, validate_parsed_entries
 
@@ -166,16 +169,19 @@ class SpecDaysTab(QWidget):
         btn_del = QPushButton("✕ Удалить")
         btn_import = QPushButton("📥 Импорт из текста")
         btn_generate = QPushButton("🖼 Генерировать изображения")
+        btn_bind_bg = QPushButton("🔗 Привязать фоны")
         btn_add.clicked.connect(self._add)
         btn_edit.clicked.connect(self._edit)
         btn_del.clicked.connect(self._delete)
         btn_import.clicked.connect(self._import)
         btn_generate.clicked.connect(self._generate)
+        btn_bind_bg.clicked.connect(self._bind_backgrounds)
         tb.addWidget(btn_add)
         tb.addWidget(btn_edit)
         tb.addWidget(btn_del)
         tb.addWidget(btn_import)
         tb.addWidget(btn_generate)
+        tb.addWidget(btn_bind_bg)
         tb.addStretch()
 
         self._list = QListWidget()
@@ -266,6 +272,35 @@ class SpecDaysTab(QWidget):
         dlg = GenerateSpecDaysDialog(self._data, day_config, self)
         if dlg.exec() == QDialog.Accepted:
             pass  # Generation already handled in dialog
+
+    def _bind_backgrounds(self):
+        """Bind generated background images to special days."""
+        if not self._data:
+            QMessageBox.warning(self, "Ошибка", "Список особых дней пуст")
+            return
+
+        dlg = BindBackgroundsDialog(self._data, self)
+        if dlg.exec() == QDialog.Accepted:
+            # Update spec_days with new bindings
+            updated_days = dlg.get_updated_spec_days()
+            bindings = dlg.get_bindings()
+            
+            if bindings:
+                self._data.clear()
+                self._data.extend(updated_days)
+                self._refresh_list()
+                self.changed.emit()
+                QMessageBox.information(
+                    self,
+                    "Привязка завершена",
+                    f"Привязано {len(bindings)} фонов к особым дням"
+                )
+            else:
+                QMessageBox.information(
+                    self,
+                    "Привязка завершена",
+                    "Не найдено файлов для привязки"
+                )
 
     def get_data(self) -> list:
         return self._data
