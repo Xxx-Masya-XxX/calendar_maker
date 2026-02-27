@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 from typing import List
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, Signal, QTimer
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLabel, QLineEdit,
@@ -89,6 +89,7 @@ class GenerateSpecDaysDialog(QDialog):
         self._date_list = QListWidget()
         self._date_list.setMaximumWidth(300)
         self._date_list.itemChanged.connect(self._on_date_selection_changed)
+        self._date_list.currentRowChanged.connect(self._update_preview)
         left_layout.addWidget(self._date_list)
 
         # Stats label
@@ -135,6 +136,11 @@ class GenerateSpecDaysDialog(QDialog):
 
         settings_group.setLayout(settings_layout)
         scroll_content_layout.addWidget(settings_group)
+        
+        # Connect settings changes to preview update
+        self._img_width.valueChanged.connect(self._update_preview)
+        self._img_height.valueChanged.connect(self._update_preview)
+        self._bg_picker.pathChanged.connect(self._update_preview)
 
         # Day number settings group
         day_group = QGroupBox("Настройки числа дня")
@@ -174,6 +180,14 @@ class GenerateSpecDaysDialog(QDialog):
 
         day_group.setLayout(day_layout)
         scroll_content_layout.addWidget(day_group)
+        
+        # Connect day settings changes to preview update
+        self._day_color_picker.colorChanged.connect(self._update_preview)
+        self._day_font_picker.fontChanged.connect(self._update_preview)
+        self._day_font_size.valueChanged.connect(self._update_preview)
+        self._day_pos_x.valueChanged.connect(self._update_preview)
+        self._day_pos_y.valueChanged.connect(self._update_preview)
+        self._day_text_align.currentTextChanged.connect(self._update_preview)
 
         # Name text settings group
         name_group = QGroupBox("Настройки текста имён")
@@ -210,6 +224,12 @@ class GenerateSpecDaysDialog(QDialog):
         self._name_pos_y.setValue(self._default_name_pos[1] if len(self._default_name_pos) > 1 else 100)
         name_layout.addRow("Позиция Y:", self._name_pos_y)
 
+        # Name text align
+        self._name_align = QComboBox()
+        self._name_align.addItems(["left", "center", "right"])
+        self._name_align.setCurrentText("center")
+        name_layout.addRow("Выравнивание:", self._name_align)
+
         # Name line spacing
         self._name_line_spacing = QSpinBox()
         self._name_line_spacing.setRange(0, 50)
@@ -218,9 +238,16 @@ class GenerateSpecDaysDialog(QDialog):
 
         name_group.setLayout(name_layout)
         scroll_content_layout.addWidget(name_group)
-
-        scroll.setWidget(scroll_content)
-        right_layout.addWidget(scroll)
+        
+        # Connect name settings changes to preview update
+        self._name_text_template.textChanged.connect(self._update_preview)
+        self._name_color_picker.colorChanged.connect(self._update_preview)
+        self._name_font_picker.fontChanged.connect(self._update_preview)
+        self._name_font_size.valueChanged.connect(self._update_preview)
+        self._name_pos_x.valueChanged.connect(self._update_preview)
+        self._name_pos_y.valueChanged.connect(self._update_preview)
+        self._name_align.currentTextChanged.connect(self._update_preview)
+        self._name_line_spacing.valueChanged.connect(self._update_preview)
 
         # Preview group
         preview_group = QGroupBox("Предпросмотр")
@@ -229,12 +256,12 @@ class GenerateSpecDaysDialog(QDialog):
         # Preview toolbar
         preview_toolbar = QHBoxLayout()
         preview_toolbar.addStretch()
-        
+
         self._btn_update_preview = QPushButton("🔄 Обновить")
         self._btn_update_preview.setMaximumWidth(120)
         self._btn_update_preview.clicked.connect(self._update_preview)
         preview_toolbar.addWidget(self._btn_update_preview)
-        
+
         preview_layout.addLayout(preview_toolbar)
 
         # Info label
@@ -247,7 +274,11 @@ class GenerateSpecDaysDialog(QDialog):
         self._preview.setMinimumSize(300, 300)
         preview_layout.addWidget(self._preview)
 
-        right_layout.addWidget(preview_group)
+        preview_group.setLayout(preview_layout)
+        scroll_content_layout.addWidget(preview_group)
+
+        scroll.setWidget(scroll_content)
+        right_layout.addWidget(scroll)
 
         splitter.addWidget(right_widget)
         splitter.setStretchFactor(0, 0)
@@ -267,6 +298,12 @@ class GenerateSpecDaysDialog(QDialog):
         # Populate date list
         self._populate_date_list()
         self._update_stats()
+        
+        # Auto-select first date and update preview
+        if self._date_list.count() > 0:
+            self._date_list.setCurrentRow(0)
+            # Delay preview update until dialog is shown
+            QTimer.singleShot(100, self._update_preview)
 
     def _populate_date_list(self):
         """Populate date list with checkboxes."""
@@ -341,69 +378,90 @@ class GenerateSpecDaysDialog(QDialog):
             'name_font': self._name_font_picker.value(),
             'name_size': self._name_font_size.value(),
             'name_position': [self._name_pos_x.value(), self._name_pos_y.value()],
+            'name_align': self._name_align.currentText(),
             'name_line_spacing': self._name_line_spacing.value(),
         }
 
     def _update_preview(self):
         """Update preview based on selected date and current settings."""
-        # Get selected date from list
-        current_row = self._date_list.currentRow()
-        if current_row < 0:
-            self._preview_info.setText("Выберите дату для предпросмотра")
+        print("DEBUG: _update_preview called")
+        try:
+            # Get selected date from list
+            current_row = self._date_list.currentRow()
+            print(f"DEBUG: current_row = {current_row}")
+            if current_row < 0:
+                self._preview_info.setText("Выберите дату для предпросмотра")
+                self._preview.set_pixmap(None)
+                return
+
+            current_item = self._date_list.item(current_row)
+            date = current_item.data(Qt.UserRole)
+            print(f"DEBUG: date = {date}")
+            if not date:
+                return
+
+            settings = self._get_current_settings()
+            print(f"DEBUG: settings = {settings}")
+
+            # Parse date
+            parts = date.split('.')
+            day = int(parts[0])
+            month = int(parts[1])
+            print(f"DEBUG: day={day}, month={month}")
+
+            # Get names for this date
+            entries = self._grouped_data.get(date, [])
+            names = [e.get("name", "") for e in entries]
+            print(f"DEBUG: names = {names}")
+
+            # Update info label
+            if len(names) > 1:
+                self._preview_info.setText(f"{date} — {len(names)} имён:")
+            else:
+                self._preview_info.setText(f"{date} — {names[0] if names else ''}")
+
+            # Create generator
+            generator = SpecDayGenerator(
+                width=settings['width'],
+                height=settings['height'],
+                background=settings['background'],
+                day_color=settings['day_color'],
+                day_font=settings['day_font'],
+                day_size=settings['day_size'],
+                day_position=settings['day_position'],
+                day_align=settings['day_align'],
+                name_text=settings['name_text'],
+                name_color=settings['name_color'],
+                name_font=settings['name_font'],
+                name_size=settings['name_size'],
+                name_position=settings['name_position'],
+                name_align=settings['name_align'],
+                name_line_spacing=settings['name_line_spacing'],
+            )
+
+            print("DEBUG: Creating generator and generating image...")
+            # Generate image
+            day_img = generator.generate(day, month, names)
+            print(f"DEBUG: Generated image shape: {day_img.shape}")
+
+            # Convert to QPixmap
+            h, w, ch = day_img.shape
+            bgra = cv2_to_rgb(day_img)
+            bytes_per_line = ch * w
+            qimg = QPixmap.fromImage(
+                QImage(bgra.data, w, h, bytes_per_line, QImage.Format_RGB888)
+            )
+            print(f"DEBUG: QPixmap created, isNull={qimg.isNull()}")
+            self._preview.set_pixmap(qimg)
+            print("DEBUG: Preview updated successfully")
+            
+        except Exception as e:
+            error_msg = f"Ошибка: {e}"
+            print(f"ERROR: {error_msg}")
+            import traceback
+            traceback.print_exc()
+            self._preview_info.setText(error_msg)
             self._preview.set_pixmap(None)
-            return
-
-        current_item = self._date_list.item(current_row)
-        date = current_item.data(Qt.UserRole)
-        if not date:
-            return
-
-        settings = self._get_current_settings()
-
-        # Parse date
-        parts = date.split('.')
-        day = int(parts[0])
-        month = int(parts[1])
-
-        # Get names for this date
-        entries = self._grouped_data.get(date, [])
-        names = [e.get("name", "") for e in entries]
-
-        # Update info label
-        if len(names) > 1:
-            self._preview_info.setText(f"{date} — {len(names)} имён:")
-        else:
-            self._preview_info.setText(f"{date} — {names[0] if names else ''}")
-
-        # Create generator
-        generator = SpecDayGenerator(
-            width=settings['width'],
-            height=settings['height'],
-            background=settings['background'],
-            text_color=settings['day_color'],
-            text_font=settings['day_font'],
-            text_size=settings['day_size'],
-            text_position=settings['day_position'],
-            text_align=settings['day_align'],
-            name_text=settings['name_text'],
-            name_color=settings['name_color'],
-            name_font=settings['name_font'],
-            name_size=settings['name_size'],
-            name_position=settings['name_position'],
-            name_line_spacing=settings['name_line_spacing'],
-        )
-
-        # Generate image
-        day_img = generator.generate(day, month, names)
-
-        # Convert to QPixmap
-        h, w, ch = day_img.shape
-        bgra = cv2_to_rgb(day_img)
-        bytes_per_line = ch * w
-        qimg = QPixmap.fromImage(
-            QImage(bgra.data, w, h, bytes_per_line, QImage.Format_RGB888)
-        )
-        self._preview.set_pixmap(qimg)
 
     def _on_accept(self):
         """Generate all images."""
@@ -425,16 +483,17 @@ class GenerateSpecDaysDialog(QDialog):
             width=settings['width'],
             height=settings['height'],
             background=settings['background'],
-            text_color=settings['day_color'],
-            text_font=settings['day_font'],
-            text_size=settings['day_size'],
-            text_position=settings['day_position'],
-            text_align=settings['day_align'],
+            day_color=settings['day_color'],
+            day_font=settings['day_font'],
+            day_size=settings['day_size'],
+            day_position=settings['day_position'],
+            day_align=settings['day_align'],
             name_text=settings['name_text'],
             name_color=settings['name_color'],
             name_font=settings['name_font'],
             name_size=settings['name_size'],
             name_position=settings['name_position'],
+            name_align=settings['name_align'],
             name_line_spacing=settings['name_line_spacing'],
         )
 

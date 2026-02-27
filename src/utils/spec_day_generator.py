@@ -19,18 +19,19 @@ class SpecDayGenerator:
         width: int = 200,
         height: int = 200,
         background: str = "",
-        text_color: List[int] = None,
-        text_font: str = None,
-        text_size: int = 48,
-        text_position: List[int] = None,
-        text_align: str = "center",
-        line_spacing: int = 10,
-        # Name text settings (separate from day number)
+        # Day number settings
+        day_color: List[int] = None,
+        day_font: str = None,
+        day_size: int = 48,
+        day_position: List[int] = None,
+        day_align: str = "center",
+        # Name text settings
         name_text: str = "{name}",
         name_font: str = None,
         name_size: int = 24,
         name_position: List[int] = None,
         name_color: List[int] = None,
+        name_align: str = "center",
         name_line_spacing: int = 5,
     ):
         """
@@ -40,39 +41,41 @@ class SpecDayGenerator:
             width: Image width in pixels
             height: Image height in pixels
             background: Path to background image
-            text_color: Text color as [R, G, B] (for day number)
-            text_font: Path to font file (for day number)
-            text_size: Font size (for day number)
-            text_position: Text position as [x, y] (for day number)
-            text_align: Text alignment (left, center, right)
-            line_spacing: Spacing between lines when multiple names
+            day_color: Text color as [R, G, B] for day number
+            day_font: Path to font file for day number
+            day_size: Font size for day number
+            day_position: Text position as [x, y] for day number
+            day_align: Text alignment for day number (left, center, right)
             name_text: Template for name text (e.g., "{name}", "ДР: {name}")
             name_font: Path to font file for names
             name_size: Font size for names
             name_position: Text position as [x, y] for names
             name_color: Text color as [R, G, B] for names
+            name_align: Text alignment for names (left, center, right)
             name_line_spacing: Spacing between name lines
         """
         self.width = width
         self.height = height
         self.background = background
-        self.text_color = text_color or [255, 0, 255]
-        self.text_font = text_font or 'C:/Windows/Fonts/arial.ttf'
-        self.text_size = text_size
-        self.text_position = text_position or [40, 40]
-        self.text_align = text_align
-        self.line_spacing = line_spacing
+        
+        # Day number settings
+        self.day_color = day_color or [255, 0, 255]
+        self.day_font = day_font or 'C:/Windows/Fonts/arial.ttf'
+        self.day_size = day_size
+        self.day_position = day_position or [40, 40]
+        self.day_align = day_align
         
         # Name text settings
         self.name_text = name_text
-        self.name_font = name_font or self.text_font
+        self.name_font = name_font or self.day_font
         self.name_size = name_size
         self.name_position = name_position or [40, 100]
-        self.name_color = name_color or self.text_color
+        self.name_color = name_color or [255, 255, 255]
+        self.name_align = name_align
         self.name_line_spacing = name_line_spacing
 
         # Initialize font manager
-        self.font_manager = FontManager(self.text_font)
+        self.font_manager = FontManager(self.day_font)
 
     @staticmethod
     def group_by_date(spec_days: List[Dict]) -> Dict[str, List[Dict]]:
@@ -143,17 +146,17 @@ class SpecDayGenerator:
 
         # Load fonts
         try:
-            font = ImageFont.truetype(self.text_font, self.text_size)
+            font = ImageFont.truetype(self.day_font, self.day_size)
         except Exception:
             font = ImageFont.load_default()
-        
+
         try:
             name_font = ImageFont.truetype(self.name_font, self.name_size)
         except Exception:
             name_font = font
 
         # Convert colors (BGR to RGB)
-        rgb_color = tuple(self.text_color)
+        rgb_color = tuple(self.day_color)
         name_rgb_color = tuple(self.name_color)
 
         # Draw day number
@@ -161,11 +164,11 @@ class SpecDayGenerator:
         bbox = draw.textbbox((0, 0), day_str, font=font)
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
-        
-        x, y = self.text_position
-        if self.text_align == "center":
+
+        x, y = self.day_position
+        if self.day_align == "center":
             text_x = (self.width - text_w) / 2
-        elif self.text_align == "right":
+        elif self.day_align == "right":
             text_x = self.width - text_w - x
         else:  # left
             text_x = x
@@ -186,10 +189,10 @@ class SpecDayGenerator:
             text_w = bbox[2] - bbox[0]
             text_h = bbox[3] - bbox[1]
 
-            # Calculate x position based on alignment
-            if self.text_align == "center":
+            # Calculate x position based on name alignment
+            if self.name_align == "center":
                 text_x = (self.width - text_w) / 2
-            elif self.text_align == "right":
+            elif self.name_align == "right":
                 text_x = self.width - text_w - name_x
             else:  # left
                 text_x = name_x
