@@ -265,7 +265,7 @@ class MainWindow(QMainWindow):
         self._tabs.addTab(self._day_tab, "📅 Дни")
 
         # spec_days tab
-        self._spec_days_tab = SpecDaysTab(self._config.get("spec_days", []))
+        self._spec_days_tab = SpecDaysTab(self._config.get("spec_days", []), self._config)
         self._spec_days_tab.changed.connect(self._on_changed)
         self._tabs.addTab(self._spec_days_tab, "🎉 Особые дни")
 
