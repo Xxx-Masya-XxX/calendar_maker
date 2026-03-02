@@ -153,15 +153,16 @@ class MonthRenderer:
         else:  # center
             offset_y = (total_height - content_height) // 2
 
-        # Create white background
-        month_img = ImageUtils.create_white_image(total_width, total_height)
-
-        # Load month background if specified
+        # Load month background if specified, otherwise create white background
         month_bg_path = month_cfg.get('background')
         if month_bg_path:
             month_bg = ImageUtils.load_background(month_bg_path, total_width, total_height)
             if month_bg is not None:
-                month_img = ImageUtils.overlay_image(month_img, month_bg, 0, 0)
+                month_img = month_bg
+            else:
+                month_img = ImageUtils.create_white_image(total_width, total_height)
+        else:
+            month_img = ImageUtils.create_white_image(total_width, total_height)
 
         # Draw month title
         month_name = f"{DateUtils.get_month_name(month)} {year}"
