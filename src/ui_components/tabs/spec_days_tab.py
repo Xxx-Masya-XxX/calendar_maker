@@ -1,12 +1,13 @@
 """Special days tab for Calendar Config Editor."""
 
 import copy
+from pathlib import Path
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QBrush
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLabel, QLineEdit,
     QPushButton, QListWidget, QListWidgetItem, QDialog, QDialogButtonBox,
-    QMessageBox, QTextEdit, QGroupBox,
+    QMessageBox, QTextEdit, QGroupBox, QFileDialog,
 )
 
 from ..helpers import color_from_list
@@ -165,14 +166,17 @@ class SpecDaysTab(QWidget):
         btn_edit = QPushButton("✏ Изменить")
         btn_del = QPushButton("✕ Удалить")
         btn_import = QPushButton("📥 Импорт из текста")
+        btn_bind = QPushButton("📁 Привязать изображения")
         btn_add.clicked.connect(self._add)
         btn_edit.clicked.connect(self._edit)
         btn_del.clicked.connect(self._delete)
         btn_import.clicked.connect(self._import)
+        btn_bind.clicked.connect(self._bind_images)
         tb.addWidget(btn_add)
         tb.addWidget(btn_edit)
         tb.addWidget(btn_del)
         tb.addWidget(btn_import)
+        tb.addWidget(btn_bind)
         tb.addStretch()
 
         self._list = QListWidget()
@@ -241,6 +245,68 @@ class SpecDaysTab(QWidget):
                 "Импорт завершен",
                 f"Добавлено {len(entries)} записей"
             )
+
+    def _bind_images(self):
+        """Bind generated images to spec days by date."""
+        # Select directory with generated images
+        dir_path = QFileDialog.getExistingDirectory(
+            self, "Выберите папку с сгенерированными изображениями", ""
+        )
+        if not dir_path:
+            return
+
+        dir_path = Path(dir_path)
+        
+        # Find all PNG files in the directory
+        image_files = list(dir_path.glob("*.png"))
+        
+        if not image_files:
+            QMessageBox.warning(
+                self,
+                "Предупреждение",
+                f"В папке {dir_path} не найдено PNG изображений"
+            )
+            return
+
+        # Build a mapping from date to image path
+        # Expected filename format: spec_DD_MM.png or spec_DD_MM_*.png
+        date_to_image = {}
+        for img_path in image_files:
+            filename = img_path.stem  # e.g., "spec_16_01"
+            parts = filename.split("_")
+            if len(parts) >= 3 and parts[0] == "spec":
+                # Extract day and month from filename
+                day = parts[1]  # e.g., "16"
+                month = parts[2]  # e.g., "01"
+                date_key = f"{day}.{month}"
+                date_to_image[date_key] = str(img_path)
+
+        if not date_to_image:
+            QMessageBox.warning(
+                self,
+                "Предупреждение",
+                "Не найдено файлов в формате spec_DD_MM.png"
+            )
+            return
+
+        # Bind images to spec days
+        bound_count = 0
+        for item in self._data:
+            date = item.get("date", "")
+            if date in date_to_image:
+                item["background"] = date_to_image[date]
+                bound_count += 1
+
+        self._refresh_list()
+        self.changed.emit()
+
+        QMessageBox.information(
+            self,
+            "Привязка завершена",
+            f"Привязано {bound_count} из {len(self._data)} особых дней.\n\n"
+            f"Найдено изображений: {len(date_to_image)}\n"
+            f"Папка: {dir_path}"
+        )
 
     def get_data(self) -> list:
         return self._data

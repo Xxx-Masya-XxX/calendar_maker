@@ -38,8 +38,8 @@
         "background": "assets/img/test_bg (1).jpg"
     },
     "regular_day": {
-        "width": 200,
-        "height": 200,
+        "width": 604,
+        "height": 740,
         "text_color": [
             0,
             0,
@@ -53,11 +53,11 @@
         "text_align": "center",
         "padding": 20,
         "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/day_background.png"
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/palaroid_bg_regular.png"
     },
     "spec_day": {
-        "width": 200,
-        "height": 200,
+        "width": 604,
+        "height": 740,
         "text_color": [
             255,
             0,
@@ -71,11 +71,11 @@
         "text_align": "center",
         "padding": 20,
         "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/test.jpg"
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/palaroid_bg1.png"
     },
     "weekend": {
-        "width": 200,
-        "height": 200,
+        "width": 604,
+        "height": 740,
         "text_color": [
             255,
             0,
@@ -89,7 +89,7 @@
         "padding": 20,
         "text_align": "center",
         "text_font": "C:/Windows/Fonts/arial.ttf",
-        "background": "assets/img/day_weekend_background.png"
+        "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/palaroid_bg_weekend.png"
     },
     "spec_days": [
         {
@@ -100,7 +100,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_16_01.png"
         },
         {
             "date": "19.01",
@@ -110,7 +111,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_19_01.png"
         },
         {
             "date": "29.01",
@@ -120,7 +122,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_29_01.png"
         },
         {
             "date": "01.02",
@@ -130,7 +133,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_01_02.png"
         },
         {
             "date": "15.02",
@@ -140,7 +144,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_15_02.png"
         },
         {
             "date": "22.02",
@@ -150,7 +155,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_22_02.png"
         },
         {
             "date": "10.03",
@@ -160,7 +166,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_10_03.png"
         },
         {
             "date": "11.03",
@@ -170,7 +177,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_11_03.png"
         },
         {
             "date": "16.03",
@@ -180,7 +188,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_16_03.png"
         },
         {
             "date": "04.04",
@@ -190,7 +199,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_04_04.png"
         },
         {
             "date": "06.04",
@@ -200,7 +210,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_06_04.png"
         },
         {
             "date": "14.04",
@@ -210,7 +221,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_14_04.png"
         },
         {
             "date": "15.04",
@@ -220,7 +232,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_15_04.png"
         },
         {
             "date": "23.04",
@@ -230,7 +243,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_23_04.png"
         },
         {
             "date": "21.05",
@@ -240,7 +254,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_21_05.png"
         },
         {
             "date": "01.06",
@@ -250,7 +265,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_01_06.png"
         },
         {
             "date": "02.06",
@@ -260,7 +276,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_02_06.png"
         },
         {
             "date": "16.06",
@@ -270,7 +287,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_16_06.png"
         },
         {
             "date": "17.06",
@@ -280,7 +298,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_17_06.png"
         },
         {
             "date": "25.06",
@@ -290,7 +309,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_25_06.png"
         },
         {
             "date": "06.07",
@@ -300,7 +320,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_06_07.png"
         },
         {
             "date": "08.07",
@@ -310,7 +331,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_08_07.png"
         },
         {
             "date": "19.07",
@@ -320,7 +342,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_19_07.png"
         },
         {
             "date": "25.07",
@@ -330,7 +353,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_25_07.png"
         },
         {
             "date": "03.08",
@@ -340,7 +364,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_03_08.png"
         },
         {
             "date": "06.08",
@@ -350,7 +375,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_06_08.png"
         },
         {
             "date": "16.08",
@@ -360,7 +386,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_16_08.png"
         },
         {
             "date": "04.09",
@@ -370,7 +397,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_04_09.png"
         },
         {
             "date": "05.09",
@@ -380,7 +408,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_05_09.png"
         },
         {
             "date": "09.09",
@@ -390,7 +419,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_09_09.png"
         },
         {
             "date": "03.10",
@@ -400,7 +430,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_03_10.png"
         },
         {
             "date": "24.10",
@@ -410,7 +441,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_24_10.png"
         },
         {
             "date": "25.10",
@@ -420,7 +452,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_25_10.png"
         },
         {
             "date": "01.11",
@@ -430,7 +463,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_01_11.png"
         },
         {
             "date": "07.11",
@@ -440,7 +474,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_07_11.png"
         },
         {
             "date": "11.11",
@@ -450,7 +485,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_11_11.png"
         },
         {
             "date": "12.11",
@@ -460,7 +496,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_12_11.png"
         },
         {
             "date": "15.11",
@@ -470,7 +507,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_15_11.png"
         },
         {
             "date": "19.11",
@@ -480,7 +518,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_19_11.png"
         },
         {
             "date": "07.12",
@@ -490,7 +529,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_07_12.png"
         },
         {
             "date": "13.12",
@@ -500,7 +540,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_13_12.png"
         },
         {
             "date": "18.12",
@@ -510,7 +551,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_18_12.png"
         },
         {
             "date": "24.12",
@@ -520,7 +562,8 @@
                 255,
                 0,
                 0
-            ]
+            ],
+            "background": "C:\\Masya\\Projects\\calendar2\\calendar_maker\\assets\\img\\shemetov\\spec_24_12.png"
         }
     ],
     "months": [
