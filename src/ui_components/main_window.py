@@ -234,12 +234,15 @@ class MainWindow(QMainWindow):
         header.addStretch()
         btn_load = QPushButton("📂 Открыть JSON")
         btn_save = QPushButton("💾 Сохранить JSON")
+        btn_spec_gen = QPushButton("🎨 Генератор спец дней")
         render_btn = QPushButton("💾 Сгенерировать календарь")
         btn_load.clicked.connect(self._load_json)
         btn_save.clicked.connect(self._save_json)
+        btn_spec_gen.clicked.connect(self._open_spec_days_generator)
         render_btn.clicked.connect(self._render_calendar)
         header.addWidget(btn_load)
         header.addWidget(btn_save)
+        header.addWidget(btn_spec_gen)
         header.addWidget(render_btn)
         root.addLayout(header)
 
@@ -283,6 +286,24 @@ class MainWindow(QMainWindow):
 
     def _on_changed(self):
         self._status.setText("Есть несохранённые изменения.")
+
+    def _open_spec_days_generator(self):
+        """Open the Spec Days Generator window."""
+        from ..features.spec_days_generator import SpecDaysGeneratorWindow
+        
+        # Get current spec days data
+        spec_days = self._config.get("spec_days", [])
+        
+        # Create and show the generator window
+        self._spec_gen_window = SpecDaysGeneratorWindow(spec_days, self)
+        self._spec_gen_window.show()
+        
+        # Connect to update spec days when generation is complete
+        self._spec_gen_window.generationComplete.connect(self._on_spec_days_generated)
+
+    def _on_spec_days_generated(self, paths: list):
+        """Handle completion of spec days generation."""
+        self._status.setText(f"Сгенерировано {len(paths)} изображений спец дней.")
 
     def _collect_config(self) -> dict:
         cfg = copy.deepcopy(self._config)
