@@ -7,40 +7,27 @@ from typing import Dict, List, Optional
 from PIL import Image, ImageDraw, ImageFont
 
 
-def load_background(path: str, width: int, height: int) -> np.ndarray:
-    """Load background image with transparency support."""
+def load_background(path: str, width: int, height: int) -> Optional[Image.Image]:
+    """Load background image with transparency support.
+    
+    Returns:
+        PIL Image in RGBA mode, or None if no background specified.
+    """
     if not path or not Path(path).exists():
-        # Create white background if no image provided
-        bg = np.ones((height, width, 3), dtype=np.uint8) * 255
-        return bg
+        return None
 
-    # Load image with alpha channel using PIL
     try:
         img = Image.open(path)
         
-        # Handle transparency
-        if img.mode == 'RGBA':
-            # Create white background
-            background = Image.new('RGB', (width, height), (255, 255, 255))
-            
-            # Resize image to fit canvas
-            img_resized = img.resize((width, height), Image.Resampling.LANCZOS)
-            
-            # Composite with alpha
-            background.paste(img_resized, (0, 0), img_resized)
-            return cv2.cvtColor(np.array(background), cv2.COLOR_RGB2BGR)
-        else:
-            # Convert to RGB if needed
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            
-            # Resize and convert to numpy array
-            img_resized = img.resize((width, height), Image.Resampling.LANCZOS)
-            return cv2.cvtColor(np.array(img_resized), cv2.COLOR_RGB2BGR)
+        # Convert to RGBA if needed
+        if img.mode != 'RGBA':
+            img = img.convert('RGBA')
+        
+        # Resize to fit canvas
+        img = img.resize((width, height), Image.Resampling.LANCZOS)
+        return img
     except Exception:
-        # Fallback to white background
-        bg = np.ones((height, width, 3), dtype=np.uint8) * 255
-        return bg
+        return None
 
 
 def get_font(font_path: str, size: int) -> ImageFont.FreeTypeFont:
@@ -147,9 +134,9 @@ def generate_spec_day_image(
     date_settings: Dict,
     desc_settings: Dict,
     canvas_settings: Dict
-) -> np.ndarray:
+) -> Image.Image:
     """
-    Generate a spec day image with date and description.
+    Generate a spec day image with date and description on transparent background.
 
     Args:
         date_text: Text to display as date (e.g., "16.01")
@@ -159,18 +146,21 @@ def generate_spec_day_image(
         canvas_settings: Canvas settings (width, height, background)
 
     Returns:
-        Generated image as numpy array (BGR format)
+        Generated image as PIL Image in RGBA mode (transparent background)
     """
     width = canvas_settings.get("width", 800)
     height = canvas_settings.get("height", 600)
     bg_path = canvas_settings.get("background", "")
 
-    # Load background
-    image = load_background(bg_path, width, height)
-
-    # Convert to PIL Image for text rendering
-    image_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    draw = ImageDraw.Draw(image_pil)
+    # Create transparent background (RGBA)
+    image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+    
+    # Load and paste background image if specified
+    bg_image = load_background(bg_path, width, height)
+    if bg_image:
+        image = Image.alpha_composite(image, bg_image)
+    
+    draw = ImageDraw.Draw(image)
 
     # Load font for date
     date_font_size = date_settings.get("font_size", 24)
@@ -190,10 +180,15 @@ def generate_spec_day_image(
 
     # Draw date text
     date_color = tuple(date_settings.get("color", [255, 255, 255]))
+    if len(date_color) == 3:
+        date_color = (*date_color, 255)  # Add alpha channel
     draw_text_with_outline(draw, date_text, date_org, date_font, date_color)
 
     # Draw description text (may be multiline)
     desc_color = tuple(desc_settings.get("color", [255, 255, 255]))
+    if len(desc_color) == 3:
+        desc_color = (*desc_color, 255)  # Add alpha channel
+    
     desc_font_size = desc_settings.get("font_size", 24)
     desc_font = get_font(desc_settings.get("font", ""), desc_font_size)
 
@@ -232,22 +227,19 @@ def generate_spec_day_image(
             draw_text_with_outline(draw, line, line_org, desc_font, desc_color)
             current_y += line_heights[i] + line_spacing
 
-    # Convert back to OpenCV format (BGR)
-    image = cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR)
-
     return image
 
 
 def save_spec_day_image(
-    image: np.ndarray,
+    image: Image.Image,
     output_path: str,
     date_text: str
 ) -> str:
     """
-    Save generated image to file.
+    Save generated image to file with transparency (PNG format).
 
     Args:
-        image: Generated image (numpy array)
+        image: Generated PIL Image (RGBA mode)
         output_path: Directory to save the image
         date_text: Date text for filename
 
@@ -262,8 +254,11 @@ def save_spec_day_image(
     filename = f"spec_{date_text.replace('.', '_')}.png"
     full_path = output_dir / filename
 
-    # Save image
-    cv2.imwrite(str(full_path), image)
+    # Ensure image is in RGBA mode and save as PNG
+    if image.mode != 'RGBA':
+        image = image.convert('RGBA')
+    
+    image.save(str(full_path), 'PNG')
 
     return str(full_path)
 
@@ -276,7 +271,7 @@ def generate_all_spec_days(
     output_dir: str
 ) -> List[str]:
     """
-    Generate images for all spec days.
+    Generate images for all spec days with transparent background.
 
     Args:
         spec_days: List of spec day dictionaries with 'date', 'name', 'desc' keys

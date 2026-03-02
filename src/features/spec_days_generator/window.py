@@ -10,9 +10,6 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QPixmap, QImage
 
-import cv2
-import numpy as np
-
 from .widgets import TextSettingsWidget, CanvasSettingsWidget
 from .generator import generate_spec_day_image, save_spec_day_image
 
@@ -278,43 +275,48 @@ class SpecDaysGeneratorWindow(QWidget):
             self._preview_label.setText("Нет данных для превью")
             self._preview_label.setPixmap(QPixmap())
             return
-        
+
         item = self._spec_days[self._current_index]
         date_text = item.get("date", "")
         desc_text = item.get("desc", "")
-        
+
         date_settings = self._date_settings.get_settings()
         desc_settings = self._desc_settings.get_settings()
         canvas_settings = self._canvas_settings.get_settings()
-        
+
         try:
-            image = generate_spec_day_image(
+            from PIL import Image
+            from io import BytesIO
+            
+            image: Image.Image = generate_spec_day_image(
                 date_text,
                 desc_text,
                 date_settings,
                 desc_settings,
                 canvas_settings
             )
-            
-            # Convert BGR to RGB for Qt
-            image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            height, width, channel = image_rgb.shape
-            
+
             # Scale image to fit preview area
             preview_size = self._preview_label.size()
-            scale_x = preview_size.width() / width
-            scale_y = preview_size.height() / height
+            scale_x = preview_size.width() / image.width
+            scale_y = preview_size.height() / image.height
             scale = min(scale_x, scale_y, 1.0)
-            
-            new_width = int(width * scale)
-            new_height = int(height * scale)
-            image_resized = cv2.resize(image_rgb, (new_width, new_height))
-            
-            # Convert to QImage
-            bytes_per_line = 3 * new_width
-            qimage = QImage(image_resized.data, new_width, new_height, bytes_per_line, QImage.Format_RGB888)
+
+            new_width = int(image.width * scale)
+            new_height = int(image.height * scale)
+            image_resized = image.resize((new_width, new_height), Image.Resampling.LANCZOS)
+
+            # Convert to QImage - handle transparency
+            if image_resized.mode == 'RGBA':
+                # Create checkerboard background for transparency visualization
+                data = image_resized.tobytes()
+                qimage = QImage(data, new_width, new_height, QImage.Format_RGBA8888)
+            else:
+                data = image_resized.convert('RGB').tobytes()
+                qimage = QImage(data, new_width, new_height, QImage.Format_RGB888)
+
             pixmap = QPixmap.fromImage(qimage)
-            
+
             self._preview_label.setPixmap(pixmap)
             self._preview_label.setText("")
         except Exception as e:

@@ -41,15 +41,15 @@
         "width": 604,
         "height": 740,
         "text_color": [
-            255,
-            255,
-            255
+            0,
+            0,
+            0
         ],
         "text_position": [
-            80,
-            90
+            40,
+            40
         ],
-        "text_size": 60,
+        "text_size": 48,
         "text_align": "center",
         "padding": 20,
         "text_font": "C:/Windows/Fonts/arial.ttf",
@@ -64,10 +64,10 @@
             255
         ],
         "text_position": [
-            80,
-            90
+            40,
+            40
         ],
-        "text_size": 60,
+        "text_size": 48,
         "text_align": "center",
         "padding": 20,
         "text_font": "C:/Windows/Fonts/arial.ttf",
@@ -82,10 +82,10 @@
             0
         ],
         "text_position": [
-            80,
-            90
+            40,
+            40
         ],
-        "text_size": 60,
+        "text_size": 48,
         "padding": 20,
         "text_align": "center",
         "text_font": "C:/Windows/Fonts/arial.ttf",
