@@ -3,15 +3,15 @@
         "width": 500,
         "height": 250,
         "text_color": [
-            21,
-            182,
-            21
+            0,
+            0,
+            0
         ],
         "text_position": [
             250,
             125
         ],
-        "text_size": 234,
+        "text_size": 137,
         "text_align": "center",
         "text_font": "C:/Windows/Fonts/arial.ttf",
         "background": "C:/Masya/Projects/calendar2/calendar_maker/assets/img/transparent.png"
